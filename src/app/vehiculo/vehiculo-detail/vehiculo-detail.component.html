@@ -1,0 +1,30 @@
+<br />
+<figure class="figure">
+  <figcaption class="figure-caption">
+    <h4>Matricula: {{ vehiculo.matricula }}</h4>
+    <h5>Tipo: {{ vehiculo.tipo }}</h5>
+    <h5>Disponibildad: {{ vehiculo.disponibilidad }}</h5>
+    <h5>Capacidad: {{ vehiculo.capacidad }}L</h5>
+    <h5>Costo: {{ vehiculo.costo }}€</h5>
+    <h5>Personal: {{ vehiculo.personal }} Personas</h5>
+  </figcaption>
+</figure>
+
+<div class="row mt-4">
+  <div class="col-md-4 btn-group">
+    <button
+      class="btn btn-outline-secondary mr-3"
+      style="width: 80px"
+      (click)="onBack()"
+    >
+      <i class="fa fa-chevron-left"></i> Volver
+    </button>
+    <button
+      class="btn btn-outline-primary"
+      style="width: 80px"
+      (click)="goEdit()"
+    >
+      Editar
+    </button>
+  </div>
+</div>

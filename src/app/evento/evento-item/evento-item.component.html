@@ -1,0 +1,13 @@
+<br />
+<div class="card">
+  <div class="card-header">
+    <h4 class="fw-bold">
+      <a [routerLink]="['/eventos', evento.id]">{{ evento.nombre }}</a>
+    </h4>
+    <p class="text-muted">{{ evento.lugar }}</p>
+  </div>
+  <div class="card-body">
+    <p>Fecha Inicio: {{ evento.fechaInicio | date: "longDate" }}</p>
+    <p>Fecha Final: {{ evento.fechaFinal | date: "longDate" }}</p>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<br />
+<div class="card">
+  <div class="card-header">
+    <h4 class="fw-bold">
+      <a [routerLink]="['/empresas', empresa.id]">{{ empresa.nombre }}</a>
+    </h4>
+  </div>
+  <div class="card-body">
+    <p class="">Tipo: {{ empresa.tipo }}</p>
+    <p class="">Teléfono: {{ empresa.telefono }}</p>
+    <p class="">CIF: {{ empresa.cif }}</p>
+  </div>
+</div>
