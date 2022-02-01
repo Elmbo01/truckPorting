@@ -8,15 +8,16 @@ import { tap, catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class EmpresaService {
-  private empresaUrl = 'api/empresa';
+  private empresaUrl = 'http://localhost:8000/empresa';
 
   constructor(private http: HttpClient) {}
 
   getEmpresa(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(this.empresaUrl).pipe(
+    let empresa = this.http.get<Empresa[]>(this.empresaUrl).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handError)
     );
+    return empresa;
   }
 
   getMaxEmpresaId(): Observable<number> {

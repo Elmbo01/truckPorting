@@ -14,5 +14,6 @@ export class EventoItemComponent {
     id: 0,
     lugar: '',
     nombre: '',
+    imagen: '',
   };
 }

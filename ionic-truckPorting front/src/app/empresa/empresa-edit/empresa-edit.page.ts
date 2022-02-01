@@ -29,6 +29,7 @@ export class EmpresaEditPage implements OnInit {
     contraseña: '',
     telefono: '',
     cif: '',
+    imagen: '',
   };
 
   empresaId: number = 0;

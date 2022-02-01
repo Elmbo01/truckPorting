@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="localhost" id="9bcc7ecc-71c3-40a6-956e-b1223a0100e8" port="2022" customName="vm" nameFormat="CUSTOM">
+        <option name="customName" value="vm" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="localhost" id="e9e6dd02-e221-496d-a015-9d6e7ba7aa42" port="2022" customName="vm" nameFormat="CUSTOM" username="vagrant">
+        <option name="customName" value="vm" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

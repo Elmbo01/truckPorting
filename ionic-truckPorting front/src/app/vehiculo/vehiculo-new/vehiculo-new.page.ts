@@ -23,6 +23,7 @@ export class VehiculoNewPage implements OnInit {
     capacidad: 0,
     costo: 0,
     personal: 0,
+    imagen: '',
   };
   constructor(
     private fb: FormBuilder,

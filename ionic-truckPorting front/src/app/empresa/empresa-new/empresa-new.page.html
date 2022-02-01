@@ -1,9 +1,98 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>empresa-new</ion-title>
-  </ion-toolbar>
-</ion-header>
+<br />
+<div class="card">
+  <div class="card-header">Nueva Empresa</div>
 
-<ion-content>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveEmpresa()" [formGroup]="empresaForm">
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="nombreId">Nombre</label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="nombreId"
+            type="text"
+            placeholder="Nombre de la empresa"
+            formControlName="nombre"
+            name="nombre"
+          />
+        </div>
+      </div>
 
-</ion-content>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="tipoId">Tipo</label>
+
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="tipoId"
+            type="text"
+            placeholder="Tipo de productos (Comida, Textil, Tecnologia, ...)"
+            formControlName="tipo"
+            name="tipo"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="contraseñaId"
+          >Contraseña</label
+        >
+
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="contraseñaId"
+            placeholder="Contraseña"
+            type="password"
+            formControlName="contraseña"
+            name="contraseña"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="telefonoId">Telefono</label>
+
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="telefonoId"
+            placeholder="telefono de contacto"
+            type="tel"
+            formControlName="telefono"
+            name="telefono"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="cifId">Cif</label>
+
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="cifId"
+            type="text"
+            placeholder="CIF de la empresa"
+            formControlName="cif"
+            name="cif"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4 btn-group">
+          <button class="btn btn-primary mr-3" type="submit">Añadir</button>
+          <button
+            class="btn btn-outline-secondary mr-3"
+            type="button"
+            title="Cancel your edits"
+            [routerLink]="['']"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

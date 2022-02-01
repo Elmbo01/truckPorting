@@ -20,6 +20,7 @@ export class EventoNewPage implements OnInit {
     lugar: '',
     fechaInicio: new Date(),
     fechaFinal: new Date(),
+    imagen: '',
   };
   constructor(
     private fb: FormBuilder,

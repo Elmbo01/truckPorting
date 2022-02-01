@@ -8,7 +8,7 @@ import { tap, catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class EventoService {
-  private eventoUrl = 'api/evento';
+  private eventoUrl = 'http://127.0.0.1:8000/evento';
 
   constructor(private http: HttpClient) {}
 

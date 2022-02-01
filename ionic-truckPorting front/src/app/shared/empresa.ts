@@ -5,4 +5,5 @@ export interface Empresa {
   contraseña: string;
   telefono: string;
   cif: string;
+  imagen: string;
 }

@@ -1,9 +1,95 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>evento-edit</ion-title>
-  </ion-toolbar>
-</ion-header>
+<br />
+<div class="card">
+  <div class="card-header">{{ evento.nombre }}</div>
 
-<ion-content>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveEvento()" [formGroup]="eventoForm">
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="nombreId">Nombre</label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="nombreId"
+            type="text"
+            placeholder="Nombre del evento"
+            formControlName="nombre"
+            name="nombre"
+          />
+        </div>
+      </div>
 
-</ion-content>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="lugarId">Lugar</label>
+
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="lugarId"
+            type="text"
+            placeholder="Lugar del evento"
+            formControlName="lugar"
+            name="lugar"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="fechaInicioId"
+          >Fecha Inicio</label
+        >
+
+        <div class="col-md-8">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaInicioId"
+            placeholder="Fecha Inicio"
+            formControlName="fechaPartida"
+            name="fechaPartida"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="fechaFinalId"
+          >Fecha Final</label
+        >
+
+        <div class="col-md-8">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaFinalId"
+            placeholder="Fecha Final"
+            formControlName="fechaFinal"
+            name="fechaFinal"
+          />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4 btn-group">
+          <button class="btn btn-primary mr-3" type="submit">Guardar</button>
+          <button
+            class="btn btn-outline-secondary mr-3"
+            type="button"
+            title="Cancel your edits"
+            [routerLink]="['']"
+          >
+            Cancelar
+          </button>
+          <button
+            class="btn btn-outline-warning"
+            type="button"
+            title="Delete this trip"
+            (click)="deleteEvento()"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMesage">{{ errorMesage }}</div>
+</div>

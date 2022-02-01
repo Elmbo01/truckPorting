@@ -1,3 +1,26 @@
-<p>
-  vehiculo-item works!
-</p>
+<br />
+<div class="card">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+
+  <br />
+  <ion-card>
+    <img src="{{ vehiculo.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ vehiculo.tipo }}</ion-card-subtitle>
+      <ion-card-title>
+        <a [routerLink]="['/vehiculos', vehiculo.id]">{{
+          vehiculo.matricula
+        }}</a>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Capacidad: {{ empresa.telefono }} </ion-card-content>
+    <ion-card-content> Personal: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content> Coste: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content>
+      <p class="">
+        Disponiblidad: <span *ngIf="vehiculo.disponibilidad; else no"></span
+        ><ng-template #no>No</ng-template> Disponible
+      </p>
+    </ion-card-content>
+  </ion-card>
+</div>

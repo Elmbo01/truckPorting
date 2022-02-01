@@ -15,9 +15,36 @@ class EventoController extends AbstractController
      */
     public function index(): Response
     {
-       $evento = $this->getDoctrine()->getRepository(Evento::class)->findAll();
+       $eventos = $this->getDoctrine()->getRepository(Evento::class)->findAll();
+       $data = [];
+        foreach ($eventos as $evento){
+            $evt =['id'=>$evento->getId(),
+                'nombre'=>$evento->getNombre(),
+                'lugar'=>$evento->getLugar(),
+                'fechaInicio'=>$evento->getFechaInicio(),
+                'fechaFinal'=>$evento->getFechaFinal(),
+                'imagen'=>$evento->getImagen(),
+            ];
+            $data[] = $evt;
+        }
         return $this->json([
-           json_encode($evento)
+        $data
+        ]);
+    }
+    /**
+     * @Route("/evento/{id}", name="eventoGetById")
+     */
+    public function eventoGetById($id){
+        $evento = $this->getDoctrine()->getRepository(Evento::class)->find($id);
+        $data =['id'=>$evento->getId(),
+            'nombre'=>$evento->getNombre(),
+            'lugar'=>$evento->getLugar(),
+            'fechaInicio'=>$evento->getFechaInicio(),
+            'fechaFinal'=>$evento->getFechaFinal(),
+            'imagen'=>$evento->getImagen(),
+        ];
+        return $this->json([
+            $data
         ]);
     }
 }

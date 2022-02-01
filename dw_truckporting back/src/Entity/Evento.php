@@ -37,6 +37,11 @@ class Evento
      */
     private $fechaFinal;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagen;
+
 
 
     public function getId(): ?int
@@ -88,6 +93,18 @@ class Evento
     public function setFechaFinal(\DateTimeInterface $fechaFinal): self
     {
         $this->fechaFinal = $fechaFinal;
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(string $imagen): self
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }

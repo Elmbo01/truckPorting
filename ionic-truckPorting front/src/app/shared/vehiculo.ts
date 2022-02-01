@@ -6,4 +6,5 @@ export interface Vehiculo {
   capacidad: number;
   costo: number;
   personal: number;
+  imagen: string;
 }

@@ -9,5 +9,9 @@
             "name": "Maksim Kolmakov",
             "email": "maxim.kolmakov@jetbrains.com"
         }
-    ]
+    ],
+  "require": {
+    "ext-json": "*",
+        "nelmio/cors-bundle": "^2.2"
+  }
 }

@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Vehiculo } from '../shared/vehiculo';
 import { tap, catchError, map } from 'rxjs/operators';
-import { EmpresaData } from './empresa-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VehiculoService {
-  private vehiculoUrl = 'api/vehiculo';
+  private vehiculoUrl = 'http://127.0.0.1:8000/vehiculo';
 
   constructor(private http: HttpClient) {}
 

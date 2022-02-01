@@ -18,5 +18,6 @@ export class EmpresaItemComponent implements OnInit {
     contraseña: '',
     telefono: '',
     cif: '',
+    imagen: '',
   };
 }

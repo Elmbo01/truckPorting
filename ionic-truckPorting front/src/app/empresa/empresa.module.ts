@@ -6,6 +6,7 @@ import { EmpresaDetailPage } from './empresa-detail/empresa-detail.page';
 import { EmpresaItemComponent } from './empresa-item/empresa-item.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmpresaPageRoutingModule } from './empresa-routing.module';
+import { EmpresaAllPage } from './empresa-all/empresa-all.page';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { EmpresaPageRoutingModule } from './empresa-routing.module';
     EmpresaDetailPage,
     EmpresaNewPage,
     EmpresaItemComponent,
+    EmpresaAllPage,
   ],
   imports: [CommonModule, SharedModule, EmpresaPageRoutingModule],
   exports: [EmpresaItemComponent],

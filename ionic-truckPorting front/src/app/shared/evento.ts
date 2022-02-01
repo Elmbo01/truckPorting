@@ -4,4 +4,5 @@ export interface Evento {
   lugar: String;
   fechaInicio: Date;
   fechaFinal: Date;
+  imagen: string;
 }

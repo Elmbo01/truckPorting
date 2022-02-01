@@ -11,13 +11,45 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmpresaController extends AbstractController
 {
     /**
-     * @Route("/emrpesa", name="empresa")
+     * @Route("/empresa", name="empresa")
      */
     public function index(): Response
     {
-       $empresa = $this->getDoctrine()->getRepository(Empresa::class)->findAll();
+       $empresas = $this->getDoctrine()->getRepository(Empresa::class)->findAll();
+       $data = [];
+       foreach ($empresas as $empresa){
+           $emp =[ 'id'=> $empresa->getId(),
+               'nombre'=> $empresa->getNombre(),
+               'tipo'=> $empresa->getTipo(),
+               'contraseña'=> $empresa->getContrasena(),
+               'telefono'=> $empresa->getTelefono(),
+               'cif'=> $empresa->getCif(),
+               'imagen'=>$empresa->getImagen(),
+           ];
+           $data[] = $emp;
+       }
+       return $this->json([
+           $data
+        ]);
+    }
+
+    /**
+     * @Route("/empresa/{id}", name="getById")
+     */
+    public function empresaGetById($id){
+
+        $empresa = $this->getDoctrine()->getRepository(Empresa::class)->find($id);
+        $data = [
+            'id'=> $empresa->getId(),
+            'nombre'=> $empresa->getNombre(),
+            'tipo'=> $empresa->getTipo(),
+            'contraseña'=> $empresa->getContrasena(),
+            'telefono'=> $empresa->getTelefono(),
+            'cif'=> $empresa->getCif(),
+            'imagen'=>$empresa->getImagen(),
+        ];
         return $this->json([
-           json_encode($empresa)
+            $data
         ]);
     }
 }

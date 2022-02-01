@@ -22,6 +22,7 @@ export class EmpresaNewPage implements OnInit {
     contraseña: '',
     telefono: '',
     cif: '',
+    imagen: '',
   };
   constructor(
     private fb: FormBuilder,

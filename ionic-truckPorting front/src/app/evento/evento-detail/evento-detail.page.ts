@@ -15,6 +15,7 @@ export class EventoDetailPage implements OnInit {
     lugar: '',
     fechaInicio: new Date(),
     fechaFinal: new Date(),
+    imagen: '',
   };
   eventoId: number = 0;
 

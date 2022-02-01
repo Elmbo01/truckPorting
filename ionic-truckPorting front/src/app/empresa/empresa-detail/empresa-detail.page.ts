@@ -16,6 +16,7 @@ export class EmpresaDetailPage implements OnInit {
     contraseña: '',
     telefono: '',
     cif: '',
+    imagen: '',
   };
   empresaId: number = 0;
 

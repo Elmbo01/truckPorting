@@ -1,3 +1,18 @@
-<p>
-  evento-item works!
-</p>
+<br />
+<ion-card>
+  <img src="{{ evento.imagen }}" />
+  <ion-card-header>
+    <ion-card-subtitle
+      >{{ evento.Lugar }}<img src="./../../../assets/icon/localizacion.png"
+    /></ion-card-subtitle>
+    <ion-card-title>
+      <a [routerLink]="['/eventos', evento.id]">{{ evento.nombre }}</a>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    Fecha Inicio: {{ evento.fechaInicio | date: "longDate" }}
+  </ion-card-content>
+  <ion-card-content>
+    Fecha Final: {{ evento.fechaFinal | date: "longDate" }}
+  </ion-card-content>
+</ion-card>

@@ -8,6 +8,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { EmpresaModule } from '../empresa/empresa.module';
 import { EventoPageModule } from '../evento/evento.module';
 import { VehiculoModule } from '../vehiculo/vehiculo.module';
+import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { VehiculoModule } from '../vehiculo/vehiculo.module';
     VehiculoModule,
     IonicModule,
     HomePageRoutingModule,
+    SharedModule,
+    CoreModule,
   ],
   declarations: [HomePage],
 })

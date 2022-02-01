@@ -19,7 +19,6 @@ final class Version20220120121113 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql("INSERT INTO vehiculo (id, matricula, disponibilidad, tipo, capacidad, costo, personal) values (1, 'SCBCU7ZA5AC018941', false, '3500 Club Coupe', 1, 3443.5, 1)");
         $this->addSql("INSERT INTO vehiculo (id, matricula, disponibilidad, tipo, capacidad, costo, personal) values (2, 'JN8AF5MR4FT456104', false, 'CR-V', 2, 43879.46, 2)");
         $this->addSql("INSERT INTO vehiculo (id, matricula, disponibilidad, tipo, capacidad, costo, personal) values (3, '4T1BK3DB3BU468389', true, 'Mariner', 3, 55103.31, 3)");
         $this->addSql("INSERT INTO vehiculo (id, matricula, disponibilidad, tipo, capacidad, costo, personal) values (4, '3VWC17AU2FM603877', true, 'Eclipse', 4, 92169.5, 4)");

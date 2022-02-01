@@ -42,6 +42,11 @@ class Empresa
      */
     private $cif;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagen;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Empresa
     public function setCif(string $cif): self
     {
         $this->cif = $cif;
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(string $imagen): self
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }

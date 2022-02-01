@@ -28,6 +28,7 @@ export class EventoEditPage implements OnInit {
     id: 0,
     lugar: '',
     nombre: '',
+    imagen: '',
   };
 
   eventoId: number = 0;

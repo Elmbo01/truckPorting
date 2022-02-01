@@ -30,6 +30,7 @@ export class VehiculoEditPage implements OnInit {
     capacidad: 0,
     costo: 0,
     personal: 0,
+    imagen: '',
   };
 
   vehiculoId: number = 0;
