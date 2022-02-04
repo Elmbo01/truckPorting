@@ -9,6 +9,7 @@ import { EventoEditPage } from './evento-edit/evento-edit.page';
 import { EventoDetailPage } from './evento-detail/evento-detail.page';
 import { EventoNewPage } from './evento-new/evento-new.page';
 import { EventoItemComponent } from './evento-item/evento-item.component';
+import { EventoAllPage } from './evento-all/evento-all.page';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, EventoPageRoutingModule],
@@ -17,6 +18,7 @@ import { EventoItemComponent } from './evento-item/evento-item.component';
     EventoDetailPage,
     EventoNewPage,
     EventoItemComponent,
+    EventoAllPage,
   ],
   exports: [EventoItemComponent],
 })

@@ -9,7 +9,9 @@ import { Empresa } from 'src/app/shared/empresa';
 export class EmpresaItemComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.empresa);
+  }
 
   @Input() empresa: Empresa = {
     id: 0,

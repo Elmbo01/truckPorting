@@ -30,7 +30,9 @@ export class EmpresaDetailPage implements OnInit {
     this.empresaId = parseInt(this.activatedroute.snapshot.params['empresaId']);
     this.empresaService
       .getEmpresaById(this.empresaId)
-      .subscribe((data: Empresa) => (this.empresa = data));
+      .subscribe((data: Empresa) => {
+        this.empresa = data[0];
+      });
   }
   goEdit(): void {
     this.router.navigate(['/empresas', this.empresaId, 'edit']);

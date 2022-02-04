@@ -8,6 +8,7 @@ import { VehiculoEditPage } from './vehiculo-edit/vehiculo-edit.page';
 import { VehiculoNewPage } from './vehiculo-new/vehiculo-new.page';
 import { VehiculoRoutingModule } from './vehiculo-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { VehiculoAllPage } from './vehiculo-all/vehiculo-all.page';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     VehiculoDetailPage,
     VehiculoEditPage,
     VehiculoNewPage,
+    VehiculoAllPage,
   ],
   imports: [CommonModule, VehiculoRoutingModule, SharedModule],
   exports: [VehiculoItemComponent],

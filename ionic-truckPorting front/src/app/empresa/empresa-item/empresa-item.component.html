@@ -1,12 +1,14 @@
 <br />
-<ion-card>
-  <img src="{{ empresa.imagen }}" />
-  <ion-card-header>
-    <ion-card-subtitle>{{ empresa.tipo }}</ion-card-subtitle>
-    <ion-card-title>
-      <a [routerLink]="['/empresas', empresa.id]">{{ empresa.nombre }}</a>
-    </ion-card-title>
-  </ion-card-header>
-  <ion-card-content> Teléfono: {{ empresa.telefono }} </ion-card-content>
-  <ion-card-content> CIF: {{ empresa.cif }} </ion-card-content>
-</ion-card>
+<ion-item>
+  <ion-card>
+    <img src="{{ empresa.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ empresa.tipo }}</ion-card-subtitle>
+      <ion-card-title>
+        <a [routerLink]="['/empresas', empresa.id]">{{ empresa.nombre }}</a>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Teléfono: {{ empresa.telefono }} </ion-card-content>
+    <ion-card-content> CIF: {{ empresa.cif }} </ion-card-content>
+  </ion-card>
+</ion-item>
