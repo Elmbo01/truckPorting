@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Evento } from './../../shared/evento';
+import { Empresa } from './../../shared/empresa';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventoService } from './../../core/evento.service';
 @Component({
@@ -21,6 +22,7 @@ export class EventoNewPage implements OnInit {
     fechaInicio: new Date(),
     fechaFinal: new Date(),
     imagen: '',
+    empresas: [],
   };
   constructor(
     private fb: FormBuilder,

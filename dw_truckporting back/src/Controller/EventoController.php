@@ -18,12 +18,19 @@ class EventoController extends AbstractController
        $eventos = $this->getDoctrine()->getRepository(Evento::class)->findAll();
        $data = [];
         foreach ($eventos as $evento){
+            $empresas = [];
+            foreach ($evento->getContratos() as $contrato){
+                if(!in_array($contrato->getEmpresa(),$empresas)){
+                    $empresas[] = $contrato->getEmpresa();
+                }
+            }
             $evt =['id'=>$evento->getId(),
                 'nombre'=>$evento->getNombre(),
                 'lugar'=>$evento->getLugar(),
                 'fechaInicio'=>$evento->getFechaInicio(),
                 'fechaFinal'=>$evento->getFechaFinal(),
                 'imagen'=>$evento->getImagen(),
+                'empresas'=>$empresas,
             ];
             $data[] = $evt;
         }
@@ -36,12 +43,19 @@ class EventoController extends AbstractController
      */
     public function eventoGetById($id){
         $evento = $this->getDoctrine()->getRepository(Evento::class)->find($id);
+        $empresas = [];
+        foreach ($evento->getContratos() as $contrato){
+            if(!in_array($contrato->getEmpresa(),$empresas)){
+                $empresas[] = $contrato->getEmpresa();
+            }
+        }
         $data =['id'=>$evento->getId(),
             'nombre'=>$evento->getNombre(),
             'lugar'=>$evento->getLugar(),
             'fechaInicio'=>$evento->getFechaInicio(),
             'fechaFinal'=>$evento->getFechaFinal(),
             'imagen'=>$evento->getImagen(),
+            'empresas'=>$empresas,
         ];
         return $this->json([
             $data

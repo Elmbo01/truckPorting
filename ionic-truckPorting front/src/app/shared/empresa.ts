@@ -1,3 +1,5 @@
+import { Contrato } from './contrato';
+
 export interface Empresa {
   id: number;
   nombre: String;
@@ -6,4 +8,5 @@ export interface Empresa {
   telefono: string;
   cif: string;
   imagen: string;
+  contratos: Contrato[];
 }

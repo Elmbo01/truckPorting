@@ -13,10 +13,15 @@
     <ion-card-content> Teléfono: {{ empresa.telefono }} </ion-card-content>
     <ion-card-content> CIF: {{ empresa.cif }} </ion-card-content>
 
-    <ion-button color="secondary">
+    <ion-list>
+      <div *ngFor="let contrato of empresa.contratos">
+        <h1>{{contrato.evento.nombre}}-</h1>
+      </div>
+    </ion-list>
+    <ion-button color="secondary" href="/empresa/edit">
       <ion-title>Editar</ion-title>
     </ion-button>
-    <ion-button color="danger">
+    <ion-button color="danger" href="/empresa/new">
       <ion-title>Eliminar</ion-title>
     </ion-button>
   </ion-card>

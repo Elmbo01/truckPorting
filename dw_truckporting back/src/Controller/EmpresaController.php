@@ -25,6 +25,7 @@ class EmpresaController extends AbstractController
                'telefono'=> $empresa->getTelefono(),
                'cif'=> $empresa->getCif(),
                'imagen'=>$empresa->getImagen(),
+               'contrato'=>$empresa->getContratos(),
            ];
            $data[] = $emp;
        }

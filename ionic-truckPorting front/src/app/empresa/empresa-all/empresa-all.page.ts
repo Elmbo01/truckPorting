@@ -15,9 +15,14 @@ export class EmpresaAllPage implements OnInit {
 
   empresas: Empresa[] = Array();
 
+  idMaxEmpresa: Number;
+
   ngOnInit() {
     this.empresaService.getEmpresa().subscribe((data: any) => {
       this.empresas = data[0];
+    });
+    this.empresaService.getMaxEmpresaId().subscribe((data: any) => {
+      this.idMaxEmpresa = data;
     });
   }
 

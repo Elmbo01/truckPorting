@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../core/evento.service';
 import { Evento } from '../../shared/evento';
+import { Empresa } from '../../shared/empresa';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ export class EventoDetailPage implements OnInit {
     fechaInicio: new Date(),
     fechaFinal: new Date(),
     imagen: '',
+    empresas: [],
   };
   eventoId: number = 0;
 

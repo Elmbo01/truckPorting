@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Empresa } from 'src/app/shared/empresa';
+import { Evento } from 'src/app/shared/evento';
 
 @Component({
   selector: 'app-empresa-item',
@@ -21,5 +22,6 @@ export class EmpresaItemComponent implements OnInit {
     telefono: '',
     cif: '',
     imagen: '',
+    contratos: [],
   };
 }

@@ -1,3 +1,5 @@
+import { Empresa } from '../shared/empresa';
+
 export interface Evento {
   id: number;
   nombre: String;
@@ -5,4 +7,5 @@ export interface Evento {
   fechaInicio: Date;
   fechaFinal: Date;
   imagen: string;
+  empresas: Empresa[];
 }

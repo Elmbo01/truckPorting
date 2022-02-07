@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmpresaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Empresa
      * @ORM\Column(type="string", length=255)
      */
     private $imagen;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contrato::class, mappedBy="empresa")
+     */
+    private $contratos;
+
+    public function __construct()
+    {
+        $this->contratos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,36 @@ class Empresa
     public function setImagen(string $imagen): self
     {
         $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contrato[]
+     */
+    public function getContratos(): Collection
+    {
+        return $this->contratos;
+    }
+
+    public function addContrato(Contrato $contrato): self
+    {
+        if (!$this->contratos->contains($contrato)) {
+            $this->contratos[] = $contrato;
+            $contrato->setEmpresa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContrato(Contrato $contrato): self
+    {
+        if ($this->contratos->removeElement($contrato)) {
+            // set the owning side to null (unless already changed)
+            if ($contrato->getEmpresa() === $this) {
+                $contrato->setEmpresa(null);
+            }
+        }
 
         return $this;
     }

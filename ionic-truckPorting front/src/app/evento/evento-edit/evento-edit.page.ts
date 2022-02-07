@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventoService } from 'src/app/core/evento.service';
 import { Evento } from 'src/app/shared/evento';
+import { Empresa } from 'src/app/shared/empresa';
 
 @Component({
   selector: 'app-evento-edit',
@@ -29,6 +30,7 @@ export class EventoEditPage implements OnInit {
     lugar: '',
     nombre: '',
     imagen: '',
+    empresas: [],
   };
 
   eventoId: number = 0;

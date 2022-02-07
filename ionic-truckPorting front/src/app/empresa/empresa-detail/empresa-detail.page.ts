@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from 'src/app/core/empresa.service';
 import { Empresa } from 'src/app/shared/empresa';
+import { Evento } from 'src/app/shared/evento';
 
 @Component({
   selector: 'app-empresa-detail',
@@ -17,6 +18,7 @@ export class EmpresaDetailPage implements OnInit {
     telefono: '',
     cif: '',
     imagen: '',
+    contratos: [],
   };
   empresaId: number = 0;
 

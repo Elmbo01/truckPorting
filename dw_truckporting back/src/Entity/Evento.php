@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Evento
      * @ORM\Column(type="string", length=255)
      */
     private $imagen;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contrato::class, mappedBy="Evento")
+     */
+    private $contratos;
+
+    public function __construct()
+    {
+        $this->contratos = new ArrayCollection();
+    }
 
 
 
@@ -105,6 +117,36 @@ class Evento
     public function setImagen(string $imagen): self
     {
         $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contrato[]
+     */
+    public function getContratos(): Collection
+    {
+        return $this->contratos;
+    }
+
+    public function addContrato(Contrato $contrato): self
+    {
+        if (!$this->contratos->contains($contrato)) {
+            $this->contratos[] = $contrato;
+            $contrato->setEvento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContrato(Contrato $contrato): self
+    {
+        if ($this->contratos->removeElement($contrato)) {
+            // set the owning side to null (unless already changed)
+            if ($contrato->getEvento() === $this) {
+                $contrato->setEvento(null);
+            }
+        }
 
         return $this;
     }

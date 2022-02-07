@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from 'src/app/core/empresa.service';
 import { Empresa } from 'src/app/shared/empresa';
+import { Evento } from 'src/app/shared/evento';
 
 @Component({
   selector: 'app-empresa-edit',
@@ -30,6 +31,7 @@ export class EmpresaEditPage implements OnInit {
     telefono: '',
     cif: '',
     imagen: '',
+    contratos: [],
   };
 
   empresaId: number = 0;

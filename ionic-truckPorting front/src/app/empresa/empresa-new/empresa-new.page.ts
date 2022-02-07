@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Empresa } from './../../shared/empresa';
+import { Evento } from './../../shared/evento';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from './../../core/empresa.service';
 
@@ -23,6 +24,7 @@ export class EmpresaNewPage implements OnInit {
     telefono: '',
     cif: '',
     imagen: '',
+    contratos: [],
   };
   constructor(
     private fb: FormBuilder,

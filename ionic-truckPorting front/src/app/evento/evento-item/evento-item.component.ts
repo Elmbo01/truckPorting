@@ -1,6 +1,7 @@
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
 import { Evento } from 'src/app/shared/evento';
+import { Empresa } from 'src/app/shared/empresa';
 
 @Component({
   selector: 'app-evento-item',
@@ -15,5 +16,6 @@ export class EventoItemComponent {
     lugar: '',
     nombre: '',
     imagen: '',
+    empresas: [],
   };
 }
