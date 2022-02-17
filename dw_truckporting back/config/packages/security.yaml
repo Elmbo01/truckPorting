@@ -55,8 +55,9 @@ security:
 
     #Evento
     - { path: ^/evento, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/evento/([0-9]+), Method:[Post] ,roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/evento/([0-9]+), method:[] ,roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/evento/new, method:[Post] ,roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/evento/([0-9]+), methods:[Post] ,roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/evento/([0-9]+), methods:[] ,roles: IS_AUTHENTICATED_ANONYMOUSLY }
     #Empresa
     - { path: ^/empresa, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/empresa/([0-9]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
