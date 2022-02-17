@@ -4,6 +4,7 @@ import { Evento } from './../../shared/evento';
 import { Empresa } from './../../shared/empresa';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventoService } from './../../core/evento.service';
+import { FormField } from 'ion-custom-form-builder';
 @Component({
   selector: 'app-evento-new',
   templateUrl: './evento-new.page.html',
@@ -12,7 +13,6 @@ import { EventoService } from './../../core/evento.service';
 export class EventoNewPage implements OnInit {
   pageTitle = 'New Event';
   errorMessage: string = '';
-  eventoForm: any;
 
   eventoId: number = 0;
   evento: Evento = {
@@ -25,51 +25,66 @@ export class EventoNewPage implements OnInit {
     empresas: [],
   };
   constructor(
-    private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
     private router: Router,
     private EventoService: EventoService
   ) {}
-
+  newForm: FormField[] = [];
   ngOnInit(): void {
-    this.eventoForm = this.fb.group({
-      nombre: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
+    this.newForm = [
+      {
+        type: 'text',
+        title: 'Nombre',
+        formControlName: 'nombre',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Nombre es necesario',
+          },
         ],
-      ],
-      lugar: '',
-      fechaInicio: new Date(),
-      fechaFinal: new Date(),
-    });
-
-    // Read the event Id from the route parameter
-
-    this.eventoId = parseInt(this.activatedroute.snapshot.params['eventoId']);
-  }
-
-  saveEvento(): void {
-    if (this.eventoForm.valid) {
-      if (this.eventoForm.dirty) {
-        this.evento = this.eventoForm.value;
-        this.evento.id = this.eventoId;
-
-        this.EventoService.createEvento(this.evento).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMessage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMessage = 'Please correct the validation errors.';
-    }
-  }
-  onSaveComplete(): void {
-    this.eventoForm.reset();
-    this.router.navigate(['']);
+      },
+      {
+        type: 'text',
+        title: 'Lugar',
+        formControlName: 'lugar',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Lugar es necesario',
+          },
+        ],
+      },
+      {
+        type: 'datetime',
+        title: 'Fecha Inicio',
+        formControlName: 'fechaInicio',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Fecha Inicio es necesario',
+          },
+        ],
+      },
+      {
+        type: 'datetime',
+        title: 'Fecha Final',
+        formControlName: 'fechaFinal',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Fecha Final es necesario',
+          },
+        ],
+      },
+      {
+        type: 'string',
+        title: 'Imagen',
+        formControlName: 'imagen',
+      },
+    ];
   }
 }

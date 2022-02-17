@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormField } from 'ion-custom-form-builder';
 import { VehiculoService } from 'src/app/core/vehiculo.service';
 import { Vehiculo } from 'src/app/shared/vehiculo';
 
@@ -14,9 +15,9 @@ export class VehiculoEditPage implements OnInit {
   PageTitle = 'Vehiculo Edit';
   errorMesage: string = '';
   vehiculoForm: any;
+  editForm: FormField[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
     private router: Router,
     private vehiculoService: VehiculoService
@@ -36,16 +37,93 @@ export class VehiculoEditPage implements OnInit {
   vehiculoId: number = 0;
 
   ngOnInit(): void {
-    this.vehiculoForm = this.fb.group({
-      matricula: ['', [Validators.required]],
-      disponibilidad: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
-      capacidad: ['', [Validators.required]],
-      costo: ['', [Validators.required]],
-      personal: ['', Validators.required],
-    });
-    this.vehiculoId = parseInt(this.activatedroute.snapshot.params['id']);
-    this.getVehiculo(this.vehiculoId);
+    this.editForm = [
+      {
+        type: 'text',
+        icon: 'car-outline',
+        title: 'Matricula',
+        formControlName: 'matricula',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Matricula es necesario',
+          },
+        ],
+        value: this.vehiculo.matricula,
+      },
+      {
+        type: 'checkbox',
+        icon: 'checkbox-outline',
+        title: 'Disponibilidad',
+        formControlName: 'disponibilidad',
+
+        value: this.vehiculo.disponibilidad,
+      },
+      {
+        type: 'text',
+        icon: 'keypad-outline',
+        title: 'Tipo de Vehiculo',
+        formControlName: 'tipo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El tipo del vehiculo es necesario',
+          },
+        ],
+        value: this.vehiculo.tipo,
+      },
+      {
+        type: 'number',
+        icon: 'layers-outline',
+        title: 'Capacidad del Vehiculo',
+        formControlName: 'capacidad',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Capacidad del vehiculo es necesario',
+          },
+        ],
+        value: this.vehiculo.capacidad,
+      },
+      {
+        type: 'number',
+        icon: 'cash-outline',
+        title: 'Costo Del Vehiculo',
+        formControlName: 'costo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El costo del vehiculo es necesario',
+          },
+        ],
+        value: this.vehiculo.costo,
+      },
+      {
+        type: 'number',
+        icon: 'people-circle-outline',
+        title: 'Cantidad del personal en el vehiculo',
+        formControlName: 'personal',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Cantidad del personal en el vehiculo es necesario',
+          },
+        ],
+        value: this.vehiculo.costo,
+      },
+      {
+        type: 'text',
+        icon: 'image-outline',
+        title: 'ImagenURL',
+        formControlName: 'imagen',
+        value: this.vehiculo.imagen,
+      },
+    ];
   }
   getVehiculo(vehiculoId: number) {
     this.vehiculoService.getVehiculoById(vehiculoId).subscribe(

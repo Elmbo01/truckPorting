@@ -15,7 +15,7 @@ export class EmpresaAllPage implements OnInit {
 
   empresas: Empresa[] = Array();
 
-  idMaxEmpresa: Number;
+  idMaxEmpresa: Number = 0;
 
   ngOnInit() {
     this.empresaService.getEmpresa().subscribe((data: any) => {
@@ -41,9 +41,5 @@ export class EmpresaAllPage implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-  }
-
-  newEmpresa() {
-    //this.route.navigateByUrl();
   }
 }

@@ -7,11 +7,11 @@ import { EmpresaNewPage } from './empresa-new/empresa-new.page';
 
 const routes: Routes = [
   {
-    path: 'empresa/:id/new',
+    path: 'empresa/new/:id',
     component: EmpresaNewPage,
   },
-  { path: 'empresas/:empresaId', component: EmpresaDetailPage },
-  { path: 'empresas/:id/edit', component: EmpresaEditPage },
+  { path: 'empresa/:empresaId', component: EmpresaDetailPage },
+  { path: 'empresa/edit/:id', component: EmpresaEditPage },
   { path: 'empresas', component: EmpresaAllPage },
 ];
 @NgModule({

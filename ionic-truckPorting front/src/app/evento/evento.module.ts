@@ -10,9 +10,17 @@ import { EventoDetailPage } from './evento-detail/evento-detail.page';
 import { EventoNewPage } from './evento-new/evento-new.page';
 import { EventoItemComponent } from './evento-item/evento-item.component';
 import { EventoAllPage } from './evento-all/evento-all.page';
+import { IonCustomFormBuilderModule } from 'ion-custom-form-builder';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, EventoPageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    EventoPageRoutingModule,
+    FormsModule,
+    IonCustomFormBuilderModule.forRoot(),
+  ],
   declarations: [
     EventoEditPage,
     EventoDetailPage,

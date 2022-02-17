@@ -7,6 +7,8 @@ import { EmpresaItemComponent } from './empresa-item/empresa-item.component';
 import { SharedModule } from '../shared/shared.module';
 import { EmpresaPageRoutingModule } from './empresa-routing.module';
 import { EmpresaAllPage } from './empresa-all/empresa-all.page';
+import { FormsModule } from '@angular/forms';
+import { IonCustomFormBuilderModule } from 'ion-custom-form-builder';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,13 @@ import { EmpresaAllPage } from './empresa-all/empresa-all.page';
     EmpresaItemComponent,
     EmpresaAllPage,
   ],
-  imports: [CommonModule, SharedModule, EmpresaPageRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    EmpresaPageRoutingModule,
+    FormsModule,
+    IonCustomFormBuilderModule.forRoot(),
+  ],
   exports: [EmpresaItemComponent],
 })
 export class EmpresaModule {}

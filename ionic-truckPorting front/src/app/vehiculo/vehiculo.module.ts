@@ -9,6 +9,8 @@ import { VehiculoNewPage } from './vehiculo-new/vehiculo-new.page';
 import { VehiculoRoutingModule } from './vehiculo-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { VehiculoAllPage } from './vehiculo-all/vehiculo-all.page';
+import { FormsModule } from '@angular/forms';
+import { IonCustomFormBuilderModule } from 'ion-custom-form-builder';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,13 @@ import { VehiculoAllPage } from './vehiculo-all/vehiculo-all.page';
     VehiculoNewPage,
     VehiculoAllPage,
   ],
-  imports: [CommonModule, VehiculoRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    VehiculoRoutingModule,
+    SharedModule,
+    FormsModule,
+    IonCustomFormBuilderModule.forRoot(),
+  ],
   exports: [VehiculoItemComponent],
 })
 export class VehiculoModule {}

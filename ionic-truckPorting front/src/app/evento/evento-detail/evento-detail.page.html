@@ -1,28 +1,27 @@
-<br />
-<figure class="figure">
-  <figcaption class="figure-caption">
-    <h4>Nombre: {{ evento.nombre }}</h4>
-    <h5>Lugar: {{ evento.lugar }}</h5>
-    <h5>Fecha Inicio: {{ evento.fechaInicio | date: "longDate" }}</h5>
-    <h5>Fecha Final: {{ evento.fechaFinal | date: "longDate" }}</h5>
-  </figcaption>
-</figure>
-
-<div class="row mt-4">
-  <div class="col-md-4 btn-group">
-    <button
-      class="btn btn-outline-secondary mr-3"
-      style="width: 80px"
-      (click)="onBack()"
-    >
-      <i class="fa fa-chevron-left"></i> Volver
-    </button>
-    <button
-      class="btn btn-outline-primary"
-      style="width: 80px"
-      (click)="goEdit()"
-    >
-      Editar
-    </button>
-  </div>
-</div>
+<ion-content>
+  <br />
+  <br />
+  <ion-card>
+    <img src="{{ evento.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ evento.lugar }}</ion-card-subtitle>
+      <ion-card-title>
+        <h1>{{ evento.nombre }}</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Fecha Inicio: {{ empresa.telefono }} </ion-card-content>
+    <ion-card-content> Fecha Final: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content> Empresas Participantes: </ion-card-content>
+    <ion-list>
+      <div *ngFor="let empresa of evento.empresa">
+        <h1>{{empresa.evento}}</h1>
+      </div>
+    </ion-list>
+    <ion-button color="secondary" href="evento/edit/{{evento.id}}">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" (click)="deleteEvento()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-card>
+</ion-content>

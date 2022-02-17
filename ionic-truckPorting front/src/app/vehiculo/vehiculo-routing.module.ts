@@ -6,11 +6,11 @@ import { VehiculoEditPage } from './vehiculo-edit/vehiculo-edit.page';
 import { VehiculoAllPage } from './vehiculo-all/vehiculo-all.page';
 
 const routes: Routes = [
-  { path: 'vehiculos/:id/new', component: VehiculoNewPage },
-  { path: 'vehiculos/:id', component: VehiculoDetailPage },
-  { path: 'vehiculos/:id/edit', component: VehiculoEditPage },
+  { path: 'vehiculo/:id/new', component: VehiculoNewPage },
+  { path: 'vehiculo/:id', component: VehiculoDetailPage },
+  { path: 'vehiculo/:id/edit', component: VehiculoEditPage },
   {
-    path: 'vehiculo',
+    path: 'vehiculos',
     component: VehiculoAllPage,
   },
 ];

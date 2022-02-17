@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>evento-all</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <ion-list>
+    <div *ngFor="let evento of eventos">
+      <app-evento-item [evento]="evento"></app-evento-item>
+    </div>
+  </ion-list>
 
-<ion-content>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button href="/evento/{{idMaxEvento}}/new">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

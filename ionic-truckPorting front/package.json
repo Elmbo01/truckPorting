@@ -26,6 +26,8 @@
     "@capacitor/status-bar": "1.0.6",
     "@ionic/angular": "^6.0.0",
     "bootstrap": "^5.1.3",
+    "ion-custom-form-builder": "^0.1.6",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

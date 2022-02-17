@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Vehiculo } from './../../shared/vehiculo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoService } from './../../core/vehiculo.service';
+import { EmpresaService } from 'src/app/core/empresa.service';
+import { VehiculoModule } from '../vehiculo.module';
+import { FormField } from 'ion-custom-form-builder';
 
 @Component({
   selector: 'app-vehiculo-new',
@@ -26,54 +29,96 @@ export class VehiculoNewPage implements OnInit {
     imagen: '',
   };
   constructor(
-    private fb: FormBuilder,
+    private vehiculoService: VehiculoModule,
     private activatedroute: ActivatedRoute,
-    private router: Router,
-
-    private vehiculoService: VehiculoService
+    private router: Router
   ) {}
 
+  newForm: FormField[] = [];
   ngOnInit(): void {
-    this.vehiculoForm = this.fb.group({
-      matricula: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
+    this.vehiculoId = parseInt(this.activatedroute.snapshot.params['id']);
+
+    this.newForm = [
+      {
+        type: 'text',
+        icon: 'car-outline',
+        title: 'Matricula',
+        formControlName: 'matricula',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Matricula es necesario',
+          },
         ],
-      ],
-      lugar: '',
-      disponibilidad: true,
-      tipo: '',
-      capacidad: 0,
-      costo: 0,
-      personal: 0,
-    });
-
-    // Read the event Id from the route parameter
-
-    this.vehiculoId = parseInt(
-      this.activatedroute.snapshot.params['vehiculoId']
-    );
+      },
+      {
+        type: 'checkbox',
+        icon: 'checkbox-outline',
+        title: 'Disponibilidad',
+        formControlName: 'disponibilidad',
+      },
+      {
+        type: 'text',
+        icon: 'keypad-outline',
+        title: 'Tipo de Vehiculo',
+        formControlName: 'tipo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El tipo del vehiculo es necesario',
+          },
+        ],
+      },
+      {
+        type: 'number',
+        icon: 'layers-outline',
+        title: 'Capacidad del Vehiculo',
+        formControlName: 'capacidad',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Capacidad del vehiculo es necesario',
+          },
+        ],
+      },
+      {
+        type: 'number',
+        icon: 'cash-outline',
+        title: 'Costo Del Vehiculo',
+        formControlName: 'costo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El costo del vehiculo es necesario',
+          },
+        ],
+      },
+      {
+        type: 'number',
+        icon: 'people-circle-outline',
+        title: 'Cantidad del personal en el vehiculo',
+        formControlName: 'personal',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Cantidad del personal en el vehiculo es necesario',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        icon: 'image-outline',
+        title: 'ImagenURL',
+        formControlName: 'imagen',
+      },
+    ];
   }
-  saveVehiculo(): void {
-    if (this.vehiculoForm.valid) {
-      if (this.vehiculoForm.dirty) {
-        this.vehiculo = this.vehiculoForm.value;
-        this.vehiculo.id = this.vehiculoId;
 
-        this.vehiculoService.createVehiculo(this.vehiculo).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMesage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMesage = 'Please correct the validation errors.';
-    }
-  }
   onSaveComplete(): void {
     this.vehiculoForm.reset();
     this.router.navigate(['']);

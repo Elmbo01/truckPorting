@@ -1,28 +1,27 @@
 <ion-content>
   <br />
   <br />
-  <br /><br />
   <ion-card>
     <img src="{{ empresa.imagen }}" />
     <ion-card-header>
       <ion-card-subtitle>{{ empresa.tipo }}</ion-card-subtitle>
       <ion-card-title>
-        <a [routerLink]="['/empresas', empresa.id]">{{ empresa.nombre }}</a>
+        <h1>{{ empresa.nombre }}</h1>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content> Teléfono: {{ empresa.telefono }} </ion-card-content>
     <ion-card-content> CIF: {{ empresa.cif }} </ion-card-content>
-
+    <ion-card-content> Contratos: </ion-card-content>
     <ion-list>
       <div *ngFor="let contrato of empresa.contratos">
-        <h1>{{contrato.evento.nombre}}-</h1>
+        <h1>{{contrato.evento.nombre}} - {{contrato.fecha}}</h1>
       </div>
     </ion-list>
-    <ion-button color="secondary" href="/empresa/edit">
-      <ion-title>Editar</ion-title>
+    <ion-button color="secondary" href="empresa/edit/{{empresa.id}}">
+      <ion-icon name="create-outline"></ion-icon>
     </ion-button>
-    <ion-button color="danger" href="/empresa/new">
-      <ion-title>Eliminar</ion-title>
+    <ion-button color="danger" (click)="deleteEmpresa()">
+      <ion-icon name="trash-outline"></ion-icon>
     </ion-button>
   </ion-card>
 </ion-content>

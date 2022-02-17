@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=EmpresaRepository::class)
  */
-class Empresa
+class Empresa extends User
 {
     /**
      * @ORM\Id
@@ -28,11 +28,6 @@ class Empresa
      * @ORM\Column(type="string", length=255)
      */
     private $tipo;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contrasena;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,18 +83,6 @@ class Empresa
         return $this;
     }
 
-    public function getContrasena(): ?string
-    {
-        return $this->contrasena;
-    }
-
-    public function setContrasena(string $contrasena): self
-    {
-        $this->contrasena = $contrasena;
-
-        return $this;
-    }
-
     public function getTelefono(): ?string
     {
         return $this->telefono;
@@ -134,6 +117,13 @@ class Empresa
         $this->imagen = $imagen;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+    $roles = $this->roles();
+    $roles[] = 'ROLE_EMPRESA';
+    return array_unique($roles);
     }
 
     /**

@@ -1,25 +1,19 @@
-<ion-content>
-  <ion-title>EDITAR - {{ empresa.nombre | uppercase }}</ion-title>
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input value="{{empresa.nombre}}" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Tipo</ion-label>
-    <ion-input value="{{empresa.tipo}}" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Teléfono</ion-label>
-    <ion-input value="{{empresa.telefono}}" type="tel"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">CIF</ion-label>
-    <ion-input value="{{empresa.cif}}" type="text"></ion-input>
-  </ion-item>
-  <ion-button color="success">
-    <ion-title>Editar</ion-title>
-  </ion-button>
-  <ion-button color="danger">
-    <ion-title>Volver</ion-title>
-  </ion-button>
+<ion-content fullscreen>
+  <br />
+  <br />
+  <div *ngIf="!isLoding">
+    <ion-title class="ion-text-capitalize">EDITAR {{empresa.nombre}}</ion-title>
+    <br />
+    <ion-custom-form-builder
+      [formFields]="editForm"
+      [submitButtonText]="'Editar'"
+      (formSubmission)="editEvento($event)"
+    >
+    </ion-custom-form-builder>
+  </div>
+
+  <br />
+  <br />
+  <br />
+  <br />
 </ion-content>

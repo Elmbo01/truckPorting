@@ -21,21 +21,16 @@ export class EmpresaService {
   }
 
   getMaxEmpresaId(): Observable<number> {
-    return this.http.get<Empresa[]>(this.empresaUrl).pipe(
-      map((data) =>
-        Math.max.apply(
-          Math,
-          data.map(function (o) {
-            return o.id;
-          })
-        )
-      ),
+    return this.http.get<number>(`${this.empresaUrl}/maxId`).pipe(
+      tap((date) => {
+        console.log('MaxId:' + JSON.stringify(date));
+      }),
       catchError(this.handError)
     );
   }
 
   getEmpresaById(id: number): Observable<Empresa> {
-    const url = `${this.empresaUrl}/${id}`;
+    const url = `${this.empresaUrl}/find/${id}`;
     return this.http.get<Empresa>(url).pipe(
       tap((data) => {
         console.log('getEmpresa: ' + JSON.stringify(data));

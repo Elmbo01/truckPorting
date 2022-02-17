@@ -1,10 +1,10 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventoService } from 'src/app/core/evento.service';
 import { Evento } from 'src/app/shared/evento';
-import { Empresa } from 'src/app/shared/empresa';
+import { FormField } from 'ion-custom-form-builder';
 
 @Component({
   selector: 'app-evento-edit',
@@ -17,7 +17,6 @@ export class EventoEditPage implements OnInit {
   eventoForm: any;
 
   constructor(
-    private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
     private router: Router,
     private eventoService: EventoService
@@ -35,68 +34,62 @@ export class EventoEditPage implements OnInit {
 
   eventoId: number = 0;
 
+  editForm: FormField[] = [];
   ngOnInit(): void {
-    this.eventoForm = this.fb.group({
-      nombre: ['', [Validators.required]],
-      lugar: ['', [Validators.required]],
-      fechaInicio: ['', [Validators.required]],
-      fechaFinal: ['', [Validators.required]],
-    });
-    this.eventoId = parseInt(this.activatedroute.snapshot.params['id']);
-    this.getEvento(this.eventoId);
-  }
-  getEvento(eventoId: number) {
-    this.eventoService.getEventoById(eventoId).subscribe(
-      (evento: Evento) => this.displayEvento(evento),
-      (error: any) => (this.errorMesage = <any>error)
-    );
-  }
-  displayEvento(evento: Evento): void {
-    if (this.eventoForm) {
-      this.eventoForm.reset();
-    }
-    this.evento = evento;
-    this.PageTitle = `Editar Evento: ${this.evento.nombre}`;
-    this.eventoForm.patchValue({
-      nombre: this.evento.nombre,
-      lugar: this.evento.lugar,
-      fechaInicio: this.evento.fechaInicio,
-      fechaFinal: this.evento.fechaFinal,
-    });
-  }
-
-  deleteEvento(): void {
-    if (this.evento.id === 0) {
-      this.onSaveComplete();
-    } else {
-      if (confirm(`¿Quieres borrar este evento?`)) {
-        this.eventoService.deleteEvento(this.evento.id).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMesage = <any>error)
-        );
-      }
-    }
-  }
-
-  saveEvento(): void {
-    if (this.eventoForm.valid) {
-      if (this.eventoForm.dirty) {
-        this.evento = this.eventoForm.value;
-        this.evento.id = this.eventoId;
-
-        this.eventoService.updateEvento(this.evento).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMesage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMesage = 'Porfavor corrija errores de validación';
-    }
-  }
-  onSaveComplete(): void {
-    this.eventoForm.reset();
-    this.router.navigate(['']);
+    this.editForm = [
+      {
+        type: 'text',
+        title: 'Nombre',
+        formControlName: 'nombre',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Nombre es necesario',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        title: 'Lugar',
+        formControlName: 'lugar',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Lugar es necesario',
+          },
+        ],
+      },
+      {
+        type: 'datetime',
+        title: 'Fecha Inicio',
+        formControlName: 'fechaInicio',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Fecha Inicio es necesario',
+          },
+        ],
+      },
+      {
+        type: 'datetime',
+        title: 'Fecha Final',
+        formControlName: 'fechaFinal',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Fecha Final es necesario',
+          },
+        ],
+      },
+      {
+        type: 'string',
+        title: 'Imagen',
+        formControlName: 'imagen',
+      },
+    ];
   }
 }

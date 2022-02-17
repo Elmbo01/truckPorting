@@ -3,15 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Empresa;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route ("/empresa")
+ */
 class EmpresaController extends AbstractController
 {
     /**
-     * @Route("/empresa", name="empresa")
+     * @Route("/", name="empresa", methods={"GET"})
      */
     public function index(): Response
     {
@@ -35,7 +39,15 @@ class EmpresaController extends AbstractController
     }
 
     /**
-     * @Route("/empresa/{id}", name="getById")
+     * @Route ("/new", name="EmpresaNew", methods={"GET", "POST"})
+     */
+    public function empresaNew(Request $request, EntityManagerInterface $entityManager){
+        $empresa = new Empresa();
+
+    }
+
+    /**
+     * @Route("/find/{id}", name="getById")
      */
     public function empresaGetById($id){
 
@@ -52,5 +64,19 @@ class EmpresaController extends AbstractController
         return $this->json([
             $data
         ]);
+
+
     }
+    /**
+     * @Route ("/maxId", name="EmpresaMaxId")
+     */
+    public function empresaMaxId(){
+        $empresas = $this->getDoctrine()->getRepository(Empresa::class)->findAll();
+        $empresaIdMax = array_search(max($empresas),$empresas);
+        return $this->json([
+            $empresaIdMax
+        ]);
+    }
+
+
 }

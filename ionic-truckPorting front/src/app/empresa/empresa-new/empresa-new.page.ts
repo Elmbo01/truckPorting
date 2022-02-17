@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Empresa } from './../../shared/empresa';
-import { Evento } from './../../shared/evento';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from './../../core/empresa.service';
+import { FormField } from 'ion-custom-form-builder';
 
 @Component({
   selector: 'app-empresa-new',
@@ -27,30 +27,90 @@ export class EmpresaNewPage implements OnInit {
     contratos: [],
   };
   constructor(
-    private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
     private router: Router,
     private empresaService: EmpresaService
   ) {}
 
+  editForm: FormField[] = [];
+
   ngOnInit(): void {
-    this.empresaForm = this.fb.group({
-      nombre: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
+    this.empresaId = parseInt(this.activatedroute.snapshot.params['id']);
+
+    this.editForm = [
+      {
+        type: 'text',
+        icon: 'person-circle-outline',
+        title: 'Nombre',
+        formControlName: 'nombre',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Nombre es necesario',
+          },
         ],
-      ],
-      tipo: '',
-      contraseña: '',
-      telefono: '',
-      cif: '',
-    });
-    // Read the company Id from the route parameter
-    //todo: arreglar linea abajo
-    this.empresaId = parseInt(this.activatedroute.snapshot.params['empresaId']);
+      },
+      {
+        type: 'text',
+        icon: 'people-circle-outline',
+        title: 'Tipo de Empresa',
+        formControlName: 'tipo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El tipo es necesario',
+          },
+        ],
+      },
+      {
+        type: 'password',
+        icon: 'eye-off-outline',
+        title: 'Contraseña',
+        formControlName: 'contraseña',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Contraseña es necesario',
+          },
+        ],
+      },
+      {
+        type: 'tel',
+        icon: 'call-outline',
+        title: 'Teléfono',
+        formControlName: 'telefono',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'telefono es necesario',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        icon: 'apps-outline',
+        title: 'CIF',
+        formControlName: 'cif',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'CIF es necesario',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        icon: 'image-outline',
+        title: 'Imagen Corporativa',
+        formControlName: 'imagen',
+        value: this.empresa.imagen,
+      },
+    ];
   }
 
   saveEmpresa(): void {

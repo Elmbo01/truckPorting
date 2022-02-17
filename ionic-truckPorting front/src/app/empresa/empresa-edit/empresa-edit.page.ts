@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormField } from 'ion-custom-form-builder';
 import { EmpresaService } from 'src/app/core/empresa.service';
 import { Empresa } from 'src/app/shared/empresa';
 import { Evento } from 'src/app/shared/evento';
@@ -17,7 +18,6 @@ export class EmpresaEditPage implements OnInit {
   empresaForm: any;
 
   constructor(
-    private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
     private router: Router,
     private empresaService: EmpresaService
@@ -34,38 +34,99 @@ export class EmpresaEditPage implements OnInit {
     contratos: [],
   };
 
+  editForm: FormField[] = [];
   empresaId: number = 0;
+  isLoading: Boolean = true;
 
   ngOnInit(): void {
-    this.empresaForm = this.fb.group({
-      nombre: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
-      contraseña: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      cif: ['', [Validators.required]],
-    });
+    this.isLoading = true;
     this.empresaId = parseInt(this.activatedroute.snapshot.params['id']);
-    this.getEmpresa(this.empresaId);
-  }
-  getEmpresa(empresaId: number) {
-    this.empresaService.getEmpresaById(empresaId).subscribe(
-      (empresa: Empresa) => this.displayEmpresa(empresa),
-      (error: any) => (this.errorMesage = <any>error)
-    );
-  }
-  displayEmpresa(empresa: Empresa): void {
-    if (this.empresaForm) {
-      this.empresaForm.reset();
-    }
-    this.empresa = empresa;
-    this.PageTitle = `Editar Empresa: ${this.empresa.nombre}`;
-    this.empresaForm.patchValue({
-      nombre: this.empresa.nombre,
-      tipo: this.empresa.tipo,
-      contraseña: this.empresa.contraseña,
-      telefono: this.empresa.telefono,
-      cif: this.empresa.cif,
-    });
+    this.empresaService
+      .getEmpresaById(this.empresaId)
+      .subscribe((data: Empresa) => {
+        this.empresa = data[0];
+        this.isLoading = false;
+      });
+
+    this.editForm = [
+      {
+        type: 'text',
+        icon: 'person-circle-outline',
+        title: 'Nombre',
+        formControlName: 'nombre',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Nombre es necesario',
+          },
+        ],
+        value: this.empresa.nombre,
+      },
+      {
+        type: 'text',
+        icon: 'people-circle-outline',
+        title: 'tipo',
+        formControlName: 'tipo',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'El tipo es necesario',
+          },
+        ],
+        value: this.empresa.tipo,
+      },
+      {
+        type: 'password',
+        icon: 'eye-off-outline',
+        title: 'contraseña',
+        formControlName: 'contraseña',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'Contraseña es necesario',
+          },
+        ],
+        value: this.empresa.contraseña,
+      },
+      {
+        type: 'number',
+        icon: 'call-outline',
+        title: 'telefono',
+        formControlName: 'telefono',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'telefono es necesario',
+          },
+        ],
+        value: this.empresa.telefono,
+      },
+      {
+        type: 'text',
+        icon: 'apps-outline',
+        title: 'cif',
+        formControlName: 'cif',
+        validators: [Validators.required],
+        validationMessages: [
+          {
+            type: 'required',
+            message: 'CIF es necesario',
+          },
+        ],
+        value: this.empresa.cif,
+      },
+      {
+        type: 'text',
+        icon: 'image-outline',
+        title: 'ImagenURL',
+        formControlName: 'imagen',
+        value: this.empresa.imagen,
+      },
+    ];
   }
 
   deleteEmpresa(): void {
