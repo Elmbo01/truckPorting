@@ -8,7 +8,11 @@
         <a [routerLink]="['/evento', evento.id]">{{ evento.nombre }}</a>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content> Fecha Inicio: {{ empresa.telefono }} </ion-card-content>
-    <ion-card-content> Fecha Final: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content>
+      Fecha Inicio: {{ evento.fechaInicio | date: "dd/MM/yyyy" }}
+    </ion-card-content>
+    <ion-card-content>
+      Fecha Final: {{ evento.fechaFinal | date: "dd/MM/yyyy" }}
+    </ion-card-content>
   </ion-card>
 </ion-item>

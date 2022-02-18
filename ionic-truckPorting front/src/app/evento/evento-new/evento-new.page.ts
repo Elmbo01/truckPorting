@@ -87,4 +87,20 @@ export class EventoNewPage implements OnInit {
       },
     ];
   }
+  newEvento(): void {
+    this.evento.id = this.eventoId;
+    this.evento.nombre = this.newForm[0].value;
+    this.evento.lugar = this.newForm[1].value;
+    this.evento.fechaInicio = this.newForm[2].value;
+    this.evento.fechaFinal = this.newForm[3].value;
+    this.evento.imagen = this.newForm[4].value;
+
+    this.EventoService.createEvento(this.evento).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMessage = <any>error)
+    );
+  }
+  onSaveComplete(): void {
+    this.router.navigate(['/empresas']);
+  }
 }

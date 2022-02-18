@@ -14,7 +14,7 @@
     <ion-card-content> Contratos: </ion-card-content>
     <ion-list>
       <div *ngFor="let contrato of empresa.contratos">
-        <h1>{{contrato.evento.nombre}} - {{contrato.fecha}}</h1>
+        <app-contrato-item [contrato]="contrato"></app-contrato-item>
       </div>
     </ion-list>
     <ion-button color="secondary" href="empresa/edit/{{empresa.id}}">

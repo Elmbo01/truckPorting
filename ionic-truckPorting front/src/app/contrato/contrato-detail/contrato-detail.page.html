@@ -1,0 +1,25 @@
+<ion-content>
+  <br />
+  <br />
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle
+        >Contrato con: {{ contrato.empresa }}</ion-card-subtitle
+      >
+      <ion-card-title>
+        <h1>Para el Evento: {{ contrato.evento }}</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Precio Acordado: {{ contrato.precio }}
+    </ion-card-content>
+    <ion-card-content>
+      Fecha del Aacuerdo: {{ contrato.fecha }}
+    </ion-card-content>
+    <ion-list>
+      <div *ngFor="let vehiculo of contrato.vehiculos">
+        <h1>Vehículos Contratados: {{ contrato.vehiculos }}</h1>
+      </div>
+    </ion-list>
+  </ion-card>
+</ion-content>

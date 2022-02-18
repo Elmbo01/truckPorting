@@ -11,7 +11,7 @@ import { FormField } from 'ion-custom-form-builder';
   styleUrls: ['./empresa-new.page.scss'],
 })
 export class EmpresaNewPage implements OnInit {
-  pageTitle = 'New Empres';
+  pageTitle = 'New Empresa';
   errorMessage: string = '';
   empresaForm: any;
 

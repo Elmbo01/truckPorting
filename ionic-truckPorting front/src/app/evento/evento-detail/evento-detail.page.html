@@ -9,12 +9,16 @@
         <h1>{{ evento.nombre }}</h1>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content> Fecha Inicio: {{ empresa.telefono }} </ion-card-content>
-    <ion-card-content> Fecha Final: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content>
+      Fecha Inicio: {{ evento.fechaInicio | date: "dd/MM/yyyy" }}
+    </ion-card-content>
+    <ion-card-content>
+      Fecha Final: {{ evento.fechaFinal | date: "dd/MM/yyyy"}}
+    </ion-card-content>
     <ion-card-content> Empresas Participantes: </ion-card-content>
     <ion-list>
       <div *ngFor="let empresa of evento.empresa">
-        <h1>{{empresa.evento}}</h1>
+        <ion-item> <ion-label>{{empresa.nombre}}</ion-label> </ion-item>
       </div>
     </ion-list>
     <ion-button color="secondary" href="evento/edit/{{evento.id}}">

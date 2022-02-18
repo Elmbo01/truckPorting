@@ -10,6 +10,7 @@ import { EventoPageModule } from '../evento/evento.module';
 import { VehiculoModule } from '../vehiculo/vehiculo.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
+import { ContratoModule } from '../contrato/contrato.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { CoreModule } from '../core/core.module';
     EventoPageModule,
     VehiculoModule,
     IonicModule,
+    ContratoModule,
     HomePageRoutingModule,
     SharedModule,
     CoreModule,
