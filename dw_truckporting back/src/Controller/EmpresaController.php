@@ -25,7 +25,7 @@ class EmpresaController extends AbstractController
            $emp =[ 'id'=> $empresa->getId(),
                'nombre'=> $empresa->getNombre(),
                'tipo'=> $empresa->getTipo(),
-               'contraseña'=> $empresa->getContrasena(),
+               'contraseña'=> $empresa->getPassword(),
                'telefono'=> $empresa->getTelefono(),
                'cif'=> $empresa->getCif(),
                'imagen'=>$empresa->getImagen(),
@@ -41,13 +41,77 @@ class EmpresaController extends AbstractController
     /**
      * @Route ("/new", name="EmpresaNew", methods={"GET", "POST"})
      */
-    public function empresaNew(Request $request, EntityManagerInterface $entityManager){
+    public function empresaNew(Request $request){
+
+        $doctrine = $this->getDoctrine()->getManager();
         $empresa = new Empresa();
 
+        $empresa->setNombre($request->get("nombre"));
+        $empresa->setTipo($request->get("tipo"));
+        $empresa->setPassword($request->get("contrasena"));
+        $empresa->setTelefono($request->get("telefono"));
+        $empresa->setCif($request->get("cif"));
+        $empresa->setImagen($request->get("imagen"));
+
+        $doctrine->persist($empresa);
+        $doctrine->flush();
+
+        return $this->json([
+            "message" => "Empresa Añadida"
+        ]);
+    }
+    /**
+     * @Route ("/{id}", name="eventoDelete")
+     * @Method ({"DELETE"})
+     */
+    public function empresaDelete($id):Response{
+
+        $doctrine = $this->getDoctrine()->getManager();
+
+        $empresa = $doctrine->getRepository(Empresa::class)->find($id);
+
+        $doctrine->remove($empresa);
+        $doctrine->flush();
+
+        return $this->json([
+            "message"=> "Empresa Eliminada"
+        ]);
     }
 
     /**
-     * @Route("/find/{id}", name="getById")
+     * @Route ("/{id}",name = "eventoUpdate")
+     * @Method  ({"PUT"})
+     */
+    public function empresaUpdate($id,Request $request):Response{
+        $doctrine = $this->getDoctrine()->getManager();
+
+
+
+        $empresa = $doctrine->getRepository(Empresa::class)->find($request->get("id"));
+        if ($empresa == null){
+            return $this->json([
+                "message"=> "Empresa no existe"
+            ]);
+        }
+
+
+        $empresa->setNombre($request->get("nombre"));
+        $empresa->setTipo($request->get("tipo"));
+        $empresa->setPassword($request->get("contrasena"));
+        $empresa->setTelefono($request->get("telefono"));
+        $empresa->setCif($request->get("cif"));
+        $empresa->setImagen($request->get("imagen"));
+
+        $doctrine->persist($empresa);
+        $doctrine->flush();
+
+        return $this->json([
+            "message"=> "Empresa Actualizada"
+        ]);
+    }
+
+    /**
+     * @Route("/find/{id}", name="getById",methods={"GET"} )
      */
     public function empresaGetById($id){
 

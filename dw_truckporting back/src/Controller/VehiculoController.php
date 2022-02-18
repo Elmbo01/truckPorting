@@ -8,122 +8,118 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route ("/vehiculo")
+ */
 class VehiculoController extends AbstractController
 {
     /**
-     * @Route("/vehiculo", name="vehiculo")
+     * @Route("/", name="vehiculo")
      */
     public function index(): Response
     {
        $vehiculos = $this->getDoctrine()->getRepository(Vehiculo::class)->findAll();
        $data = [];
-       foreach ($vehiculos as $vehiculo){
-           $tmp = [
-               "id"=>$vehiculo->getId(),
-               "matricula"=>$vehiculo->getMatricula(),
-               "disponibilidad"=>$vehiculo->getDisponibilidad(),
-               "tipo"=>$vehiculo->getTipo(),
-               "capacidad"=>$vehiculo->getCapacidad(),
-               "costo"=>$vehiculo->getCosto(),
-               "personal"=>$vehiculo->getPersonal(),
-               'imagen'=>$vehiculo->getImagen(),
-           ];
-          $data[] = $tmp;
-        }
-        return $this->json(
-            $data
-        );
+
+        return $this->json([
+        $data
+        ]);
     }
     /**
-     * @Route("/vehiculo/{id}", name="vehiculoGetById")
+     * @Route ("/new", name="vehiculoNew")
+     * @Method({"POST"})
+     */
+    public function vehiculoNew(Request $request): Response{
+      $dotrine =  $this->getDoctrine()->getManager();
+
+      $vehiculo = new Vehiculo();
+
+      $vehiculo->setMatricula($request->get("matricula"));
+      $vehiculo->setDisponibilidad($request->get("disponibilidad"));
+      $vehiculo->setTipo($request->get("tipo"));
+      $vehiculo->setCapacidad($request->get("capacidad"));
+      $vehiculo->setCosto($request->get("costo"));
+      $vehiculo->setPersonal($request->get("personal"));
+      $vehiculo->setImagen($request->get("imagen"));
+
+      $dotrine->persist($vehiculo);
+      $dotrine->flush();
+
+      return $this->json([
+          "message" => "Vehiculo Añadido"
+      ]);
+
+
+    }
+
+    /**
+     * @Route ("/{id}", name="vehiculoDelete")
+     * @Method ({"DELETE"})
+     */
+    public function vehiculoDelete($id):Response{
+
+        $doctrine = $this->getDoctrine()->getManager();
+
+        $vehiculo = $doctrine->getRepository(Vehiculo::class)->find($id);
+
+        $doctrine->remove($vehiculo);
+        $doctrine->flush();
+
+        return $this->json([
+            "message"=> "Vehículo Eliminado"
+        ]);
+    }
+
+    /**
+     * @Route ("/{id}",name = "vehiculoUpdate")
+     * @Method  ({"PUT"})
+     */
+    public function vehiculoUpdate($id,Request $request):Response{
+        $doctrine = $this->getDoctrine()->getManager();
+
+        $vehiculo = $doctrine->getRepository(Vehiculo::class)->find($request->get("id"));
+        if ($vehiculo == null){
+            return $this->json([
+                "message"=> "Vehiculo no existe"
+            ]);
+        }
+
+        $vehiculo->setMatricula($request->get("matricula"));
+        $vehiculo->setDisponibilidad($request->get("disponibilidad"));
+        $vehiculo->setTipo($request->get("tipo"));
+        $vehiculo->setCapacidad($request->get("capacidad"));
+        $vehiculo->setCosto($request->get("costo"));
+        $vehiculo->setPersonal($request->get("personal"));
+        $vehiculo->setImagen($request->get("imagen"));
+
+        $doctrine->persist($vehiculo);
+        $doctrine->flush();
+
+        return $this->json([
+            "message"=> "Vehiculo Actualizado"
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="vehiculoGetById", methods={"GET"})
      */
     public function vehiculoGetById($id){
         $vehiculo = $this->getDoctrine()->getRepository(Vehiculo::class)->find($id);
-        $data = [
-            "id"=>$vehiculo->getId(),
-            "matricula"=>$vehiculo->getMatricula(),
-            "disponibilidad"=>$vehiculo->getDisponibilidad(),
-            "tipo"=>$vehiculo->getTipo(),
-            "capacidad"=>$vehiculo->getCapacidad(),
-            "costo"=>$vehiculo->getCosto(),
-            "personal"=>$vehiculo->getPersonal(),
+        $vehiculos = [];
+
+        $data =['id'=>$vehiculoId(),
+            'matricula'=>$vehiculo->getMatricula(),
+            'disponibilidad'=>$vehiculo->getDisponibilidad(),
+            'tipo'=>$vehiculo->getTipo(),
+            'capacidad'=>$vehiculo->getCapacidad(),
+            'costo'=>$vehiculo->getCosto(),
+            'personal'=>$vehiculo->getPersonal(),
             'imagen'=>$vehiculo->getImagen(),
         ];
-        return $this->json(
+        return $this->json([
             $data
-        );
+        ]);
     }
 
-     /**
-     * @Route("/", name="vehiculo_index", methods={"GET"})
-     */
-    public function index(vehiculoRepository $vehiculoRepository): Response
-    {
-        return $this->json(
-            $data
-        );
-    }
 
-    /**
-     * @Route("/new", name="vehiculo_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $vehiculo= new Vehiculo();
-        $form = $this->createForm(VehiculoType::class, $vehiculo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($vehiculo);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('vehiculo_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->json(
-            $data
-        );
-    }
-
-    /**
-     * @Route("/{id}", name="empresa_show", methods={"GET"})
-     */
-    public function show(Vehiculo $vehiculo): Response
-    {
-        return $this->json(
-            $data
-        );
-    }
-
-    /**
-     * @Route("/{id}/edit", name="vehiculo_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Vehiculo $vehiculo, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(VehiculoType::class, $vehiculo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('vehiculo_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->json(
-            $data
-        );
-    }
-
-    /**
-     * @Route("/{id}", name="vehiculo_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Vehiculo$vehiculo, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$vehiculo->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($empresa);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('vehiculo_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
