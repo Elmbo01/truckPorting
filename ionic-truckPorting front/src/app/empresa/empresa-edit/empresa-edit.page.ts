@@ -41,12 +41,6 @@ export class EmpresaEditPage implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.empresaId = parseInt(this.activatedroute.snapshot.params['id']);
-    this.empresaService
-      .getEmpresaById(this.empresaId)
-      .subscribe((data: Empresa) => {
-        this.empresa = data[0];
-        this.isLoading = false;
-      });
 
     this.editForm = [
       {
@@ -127,8 +121,23 @@ export class EmpresaEditPage implements OnInit {
         value: this.empresa.imagen,
       },
     ];
+    this.getEmpresa(this.empresaId);
   }
-
+  getEmpresa(idEmpresa: number) {
+    this.empresaService
+      .getEmpresaById(this.empresaId)
+      .subscribe((data: Empresa) => {
+        this.displayEmpresa(data);
+      });
+  }
+  displayEmpresa(data: Empresa) {
+    this.empresa = data;
+    this.editForm.values()[0] = this.empresa.nombre;
+    this.editForm.values()[1] = this.empresa.tipo;
+    this.editForm.values()[2] = this.empresa.contraseña;
+    this.editForm.values()[3] = this.empresa.telefono;
+    this.editForm.values()[4] = this.empresa.imagen;
+  }
   deleteEmpresa(): void {
     if (this.empresa.id === 0) {
       this.onSaveComplete();
@@ -143,24 +152,19 @@ export class EmpresaEditPage implements OnInit {
   }
 
   saveEmpresa(): void {
-    if (this.empresaForm.valid) {
-      if (this.empresaForm.dirty) {
-        this.empresa = this.empresaForm.value;
-        this.empresa.id = this.empresaId;
+    this.empresa.id = this.empresaId;
+    this.empresa.nombre = this.editForm.values()[0];
+    this.empresa.tipo = this.editForm.values()[1];
+    this.empresa.contraseña = this.editForm.values()[2];
+    this.empresa.telefono = this.editForm.values()[3];
+    this.empresa.imagen = this.editForm.values()[4];
 
-        this.empresaService.updateEmpresa(this.empresa).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMesage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMesage = 'Porfavor corrija errores de validación';
-    }
+    this.empresaService.updateEmpresa(this.empresa).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMesage = <any>error)
+    );
   }
   onSaveComplete(): void {
-    this.empresaForm.reset();
-    this.router.navigate(['']);
+    this.router.navigate(['/empresas']);
   }
 }

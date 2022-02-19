@@ -101,6 +101,6 @@ export class EventoNewPage implements OnInit {
     );
   }
   onSaveComplete(): void {
-    this.router.navigate(['/empresas']);
+    this.router.navigate(['/eventos']);
   }
 }

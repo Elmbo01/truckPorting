@@ -15,7 +15,6 @@ import { FormField } from 'ion-custom-form-builder';
 export class VehiculoNewPage implements OnInit {
   pageTitle = 'New Vehiculo';
   errorMesage: string = '';
-  vehiculoForm: any;
 
   vehiculoId: number = 0;
   vehiculo: Vehiculo = {
@@ -29,7 +28,7 @@ export class VehiculoNewPage implements OnInit {
     imagen: '',
   };
   constructor(
-    private vehiculoService: VehiculoModule,
+    private vehiculoService: VehiculoService,
     private activatedroute: ActivatedRoute,
     private router: Router
   ) {}
@@ -119,8 +118,22 @@ export class VehiculoNewPage implements OnInit {
     ];
   }
 
+  createVehiculo(): void {
+    this.vehiculo.matricula = this.newForm.values()[0];
+    this.vehiculo.disponibilidad = this.newForm.values()[1];
+    this.vehiculo.tipo = this.newForm.values()[2];
+    this.vehiculo.capacidad = this.newForm.values()[3];
+    this.vehiculo.costo = this.newForm.values()[4];
+    this.vehiculo.personal = this.newForm.values()[5];
+    this.vehiculo.imagen = this.newForm.values()[6];
+
+    this.vehiculoService.createVehiculo(this.vehiculo).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMesage = <any>error)
+    );
+  }
+
   onSaveComplete(): void {
-    this.vehiculoForm.reset();
     this.router.navigate(['']);
   }
 }

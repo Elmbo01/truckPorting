@@ -13,7 +13,6 @@ import { Contrato } from 'src/app/shared/contrato';
 export class ContratoNewPage implements OnInit {
   pageTitle = 'New Contrato';
   errorMessage: string = '';
-  contratoForm: any;
 
   contratoId: number = 0;
   contrato: Contrato = {
@@ -36,19 +35,6 @@ export class ContratoNewPage implements OnInit {
     this.contratoId = parseInt(this.activatedroute.snapshot.params['id']);
 
     this.editForm = [
-      {
-        type: 'text',
-        icon: 'people-circle-outline',
-        title: 'Empresa',
-        formControlName: 'empresa',
-        validators: [Validators.required],
-        validationMessages: [
-          {
-            type: 'required',
-            message: 'Empresa es necesario',
-          },
-        ],
-      },
       {
         type: 'text',
         icon: 'bulb-outline',
@@ -105,24 +91,9 @@ export class ContratoNewPage implements OnInit {
   }
 
   saveContrato(): void {
-    if (this.contratoForm.valid) {
-      if (this.contratoForm.dirty) {
-        this.contrato = this.contratoForm.value;
-        this.contrato.id = this.contratoId;
-
-        this.contratoService.createContrato(this.contrato).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMessage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMessage = 'Please correct the validation errors.';
-    }
+    //Todo: En contrar forma de hacerlo
   }
   onSaveComplete(): void {
-    this.contratoForm;
     this.router.navigate(['']);
   }
 }

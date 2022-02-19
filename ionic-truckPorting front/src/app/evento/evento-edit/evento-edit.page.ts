@@ -92,4 +92,35 @@ export class EventoEditPage implements OnInit {
       },
     ];
   }
+  getEvento(eventoId: number) {
+    this.eventoService.getEventoById(eventoId).subscribe(
+      (evento: Evento) => this.displayEvento(evento),
+      (error: any) => (this.errorMesage = <any>error)
+    );
+  }
+  displayEvento(evento: Evento) {
+    this.evento = evento;
+    this.editForm.values()[0] = this.evento.nombre;
+    this.editForm.values()[1] = this.evento.lugar;
+    this.editForm.values()[2] = this.evento.fechaInicio;
+    this.editForm.values()[3] = this.evento.fechaFinal;
+    this.editForm.values()[4] = this.evento.imagen;
+  }
+
+  saveEvento() {
+    this.evento.id = this.eventoId;
+    this.evento.nombre = this.editForm[0].value;
+    this.evento.lugar = this.editForm[1].value;
+    this.evento.fechaInicio = this.editForm[2].value;
+    this.evento.fechaFinal = this.editForm[3].value;
+    this.evento.imagen = this.editForm[4].value;
+
+    this.eventoService.updateEvento(this.evento).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMesage = <any>error)
+    );
+  }
+  onSaveComplete(): void {
+    this.router.navigate(['/eventos']);
+  }
 }

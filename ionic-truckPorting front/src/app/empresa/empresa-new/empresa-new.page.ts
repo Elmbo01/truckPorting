@@ -32,12 +32,12 @@ export class EmpresaNewPage implements OnInit {
     private empresaService: EmpresaService
   ) {}
 
-  editForm: FormField[] = [];
+  newForm: FormField[] = [];
 
   ngOnInit(): void {
     this.empresaId = parseInt(this.activatedroute.snapshot.params['id']);
 
-    this.editForm = [
+    this.newForm = [
       {
         type: 'text',
         icon: 'person-circle-outline',
@@ -114,24 +114,20 @@ export class EmpresaNewPage implements OnInit {
   }
 
   saveEmpresa(): void {
-    if (this.empresaForm.valid) {
-      if (this.empresaForm.dirty) {
-        this.empresa = this.empresaForm.value;
-        this.empresa.id = this.empresaId;
+    this.empresa.id = this.empresaId;
+    this.empresa.nombre = this.newForm.values()[0];
+    this.empresa.tipo = this.newForm.values()[1];
+    this.empresa.contraseña = this.newForm.values()[2];
+    this.empresa.telefono = this.newForm.values()[3];
+    this.empresa.imagen = this.newForm.values()[4];
 
-        this.empresaService.createEmpresa(this.empresa).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMessage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMessage = 'Please correct the validation errors.';
-    }
+    this.empresaService.createEmpresa(this.empresa).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMessage = <any>error)
+    );
   }
   onSaveComplete(): void {
     this.empresaForm;
-    this.router.navigate(['']);
+    this.router.navigate(['/vehiculos']);
   }
 }

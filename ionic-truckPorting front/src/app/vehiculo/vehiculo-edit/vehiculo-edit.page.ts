@@ -14,7 +14,6 @@ import { Vehiculo } from 'src/app/shared/vehiculo';
 export class VehiculoEditPage implements OnInit {
   PageTitle = 'Vehiculo Edit';
   errorMesage: string = '';
-  vehiculoForm: any;
   editForm: FormField[] = [];
 
   constructor(
@@ -37,6 +36,7 @@ export class VehiculoEditPage implements OnInit {
   vehiculoId: number = 0;
 
   ngOnInit(): void {
+    this.vehiculoId = parseInt(this.activatedroute.snapshot.params['id']);
     this.editForm = [
       {
         type: 'text',
@@ -124,6 +124,7 @@ export class VehiculoEditPage implements OnInit {
         value: this.vehiculo.imagen,
       },
     ];
+    this.getVehiculo(this.vehiculoId);
   }
   getVehiculo(vehiculoId: number) {
     this.vehiculoService.getVehiculoById(vehiculoId).subscribe(
@@ -132,19 +133,14 @@ export class VehiculoEditPage implements OnInit {
     );
   }
   displayVehiculo(vehiculo: Vehiculo): void {
-    if (this.vehiculoForm) {
-      this.vehiculoForm.reset();
-    }
     this.vehiculo = vehiculo;
     this.PageTitle = `Editar Vehículo: ${this.vehiculo.matricula}`;
-    this.vehiculoForm.patchValue({
-      matricula: this.vehiculo.matricula,
-      disponibilidad: this.vehiculo.disponibilidad,
-      tipo: this.vehiculo.tipo,
-      capacidad: this.vehiculo.capacidad,
-      costo: this.vehiculo.costo,
-      personal: this.vehiculo.personal,
-    });
+    this.editForm.values()[0] = this.vehiculo.matricula;
+    this.editForm.values()[1] = this.vehiculo.disponibilidad;
+    this.editForm.values()[2] = this.vehiculo.tipo;
+    this.editForm.values()[3] = this.vehiculo.capacidad;
+    this.editForm.values()[4] = this.vehiculo.costo;
+    this.editForm.values()[5] = this.vehiculo.personal;
   }
 
   deleteVehiculo(): void {
@@ -161,24 +157,20 @@ export class VehiculoEditPage implements OnInit {
   }
 
   saveVehiculo(): void {
-    if (this.vehiculoForm.valid) {
-      if (this.vehiculoForm.dirty) {
-        this.vehiculo = this.vehiculoForm.value;
-        this.vehiculo.id = this.vehiculoId;
+    this.vehiculo.matricula = this.editForm.values()[0];
+    this.vehiculo.disponibilidad = this.editForm.values()[1];
+    this.vehiculo.tipo = this.editForm.values()[2];
+    this.vehiculo.capacidad = this.editForm.values()[3];
+    this.vehiculo.costo = this.editForm.values()[4];
+    this.vehiculo.personal = this.editForm.values()[5];
+    this.vehiculo.imagen = this.editForm.values()[6];
 
-        this.vehiculoService.updateVehiculo(this.vehiculo).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMesage = <any>error)
-        );
-      } else {
-        this.onSaveComplete();
-      }
-    } else {
-      this.errorMesage = 'Porfavor corrija errores de validación';
-    }
+    this.vehiculoService.createVehiculo(this.vehiculo).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMesage = <any>error)
+    );
   }
   onSaveComplete(): void {
-    this.vehiculoForm.reset();
-    this.router.navigate(['']);
+    this.router.navigate(['/vehiculos']);
   }
 }
