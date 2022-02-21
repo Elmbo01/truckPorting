@@ -17,19 +17,19 @@ export class LoginComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      nombre: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   login() {
-    const val: any = this.form.value;
+    const val = this.form.value;
 
     if (val.email && val.password) {
       this.authService.login(val.email, val.password).subscribe((data) => {
         data = {
           ...data,
-          email: val.email,
+          u: val.email,
         };
         // Save session: Generate expiration date
         const expire_moment = moment().add(1, 'days');
