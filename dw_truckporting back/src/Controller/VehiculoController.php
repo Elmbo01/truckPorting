@@ -26,8 +26,7 @@ class VehiculoController extends AbstractController
         ]);
     }
     /**
-     * @Route ("/new", name="vehiculoNew")
-     * @Method({"POST"})
+     * @Route ("/new", name="vehiculoNew", methods={"POST"})
      */
     public function vehiculoNew(Request $request): Response{
       $dotrine =  $this->getDoctrine()->getManager();
@@ -53,8 +52,7 @@ class VehiculoController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}", name="vehiculoDelete")
-     * @Method ({"DELETE"})
+     * @Route ("/{id}", name="vehiculoDelete", methods={"DELETE"})
      */
     public function vehiculoDelete($id):Response{
 
@@ -71,8 +69,7 @@ class VehiculoController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}",name = "vehiculoUpdate")
-     * @Method  ({"PUT"})
+     * @Route ("/{id}",name = "vehiculoUpdate", methods={"PUT"})
      */
     public function vehiculoUpdate($id,Request $request):Response{
         $doctrine = $this->getDoctrine()->getManager();

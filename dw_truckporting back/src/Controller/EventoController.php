@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Evento;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,19 +43,20 @@ class EventoController extends AbstractController
         ]);
     }
     /**
-     * @Route ("/new", name="eventoNew")
-     * @Method({"POST"})
+     * @Route ("/new", name="eventoNew", methods={"POST"})
      */
     public function eventoNew(Request $request): Response{
       $dotrine =  $this->getDoctrine()->getManager();
 
+      $data = json_decode($request->getContent());
+
       $evento = new Evento();
 
-      $evento->setNombre($request->get("nombre"));
-      $evento->setLugar($request->get("lugar"));
-      $evento->setFechaInicio($request->get("fechaInicio"));
-      $evento->setFechaFinal($request->get("fechaFinal"));
-      $evento->setImagen($request->get("imagen"));
+      $evento->setNombre($data->get("nombre"));
+      $evento->setLugar((string)($request->get("lugar")));
+      $evento->setFechaInicio(new DateTime((string)$request->get("fechaInicio")) );
+      $evento->setFechaFinal(new DateTime((string)$request->get("fechaFinal")));
+      $evento->setImagen((string)($request->get("imagen")));
 
       $dotrine->persist($evento);
       $dotrine->flush();
@@ -67,8 +69,7 @@ class EventoController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}", name="eventoDelete")
-     * @Method ({"DELETE"})
+     * @Route ("/{id}", name="eventoDelete", methods={"DELETE"})
      */
     public function eventoDelete($id):Response{
 
@@ -85,8 +86,7 @@ class EventoController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}",name = "eventoUpdate")
-     * @Method  ({"PUT"})
+     * @Route ("/{id}",name = "eventoUpdate", methods= {"PUT"})
      */
     public function evnetoUpdate($id,Request $request):Response{
         $doctrine = $this->getDoctrine()->getManager();

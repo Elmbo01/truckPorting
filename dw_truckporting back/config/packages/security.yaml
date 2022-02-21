@@ -56,21 +56,32 @@ security:
     #Evento
     - { path: ^/evento, roles: IS_AUTHENTICATED_ANONYMOUSLY}
     - { path: ^/evento/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-    - { path: ^/evento/new, roles: ROLE_ADMIN, methods: [POST] }
-    - { path: ^/evento/[0-9]+, roles: ROLE_ADMIN, methods: [PUT, DELETE] }
+    #- { path: ^/evento/new, roles: ROLE_ADMIN, methods: [POST] }
+    #- { path: ^/evento/[0-9]+, roles: ROLE_ADMIN, methods: [PUT, DELETE] }
+    #- { path: ^/evento/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET]}
+    - { path: ^/evento/new, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+    - { path: ^/evento/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [PUT, DELETE] }
     - { path: ^/evento/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET]}
     #Empresa
     - { path: ^/empresa, roles: IS_AUTHENTICATED_ANONYMOUSLY}
     - { path: ^/empresa/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-    - { path: ^/empresa/new, roles: ROLE_ADMIN, methods: [POST] }
-    - { path: ^/empresa/[0-9]+, roles: ROLE_EMPRESA, methods: [PUT, DELETE] }
+    #- { path: ^/empresa/new, roles: ROLE_ADMIN, methods: [POST] }
+    #- { path: ^/empresa/[0-9]+, roles: ROLE_EMPRESA, methods: [PUT, DELETE] }
+    #- { path: ^/empresa/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET]}
+    - { path: ^/empresa/new, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+    - { path: ^/empresa/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [PUT, DELETE] }
     - { path: ^/empresa/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET]}
     #Vehiculo
-    - { path: ^/vehiculo, roles: ROLE_EMPRESA}
-    - { path: ^/vehiculo/, roles: ROLE_EMPRESA}
-    - { path: ^/vehiculo/new, roles: ROLE_ADMIN, methods: [POST] }
-    - { path: ^/vehiculo/[0-9]+, roles: ROLE_ADMIN, methods: [PUT, DELETE] }
-    - { path: ^/vehiculo/[0-9]+, roles: ROLE_EMPRESA, methods: [GET]}
+    #- { path: ^/vehiculo, roles: ROLE_EMPRESA}
+    #- { path: ^/vehiculo/, roles: ROLE_EMPRESA}
+    #- { path: ^/vehiculo/new, roles: ROLE_ADMIN, methods: [POST] }
+    #- { path: ^/vehiculo/[0-9]+, roles: ROLE_ADMIN, methods: [PUT, DELETE] }
+    #- { path: ^/vehiculo/[0-9]+, roles: ROLE_EMPRESA, methods: [GET]}
+    - { path: ^/vehiculo, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+    - { path: ^/vehiculo/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+    - { path: ^/vehiculo/new, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+    - { path: ^/vehiculo/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [PUT, DELETE] }
+    - { path: ^/vehiculo/[0-9]+, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET]}
 
 when@test:
   security:

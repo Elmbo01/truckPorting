@@ -16,7 +16,7 @@ export class EventoAllPage implements OnInit {
 
   eventos: Evento[] = Array();
 
-  idMaxEvento: Number;
+  idMaxEvento: Number = 0;
 
   ngOnInit() {
     this.eventoService.getEvento().subscribe((data: any) => {

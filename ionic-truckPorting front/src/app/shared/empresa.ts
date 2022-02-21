@@ -1,6 +1,7 @@
 import { Contrato } from './contrato';
+import { User } from './user.ts';
 
-export interface Empresa {
+export interface Empresa extends User {
   id: number;
   nombre: String;
   tipo: string;

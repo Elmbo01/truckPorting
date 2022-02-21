@@ -60,7 +60,7 @@ export class VehiculoNewPage implements OnInit {
       {
         type: 'text',
         icon: 'keypad-outline',
-        title: 'Tipo de Vehiculo',
+        title: 'Tipo',
         formControlName: 'tipo',
         validators: [Validators.required],
         validationMessages: [
@@ -73,7 +73,7 @@ export class VehiculoNewPage implements OnInit {
       {
         type: 'number',
         icon: 'layers-outline',
-        title: 'Capacidad del Vehiculo',
+        title: 'Capacidad',
         formControlName: 'capacidad',
         validators: [Validators.required],
         validationMessages: [
@@ -86,7 +86,7 @@ export class VehiculoNewPage implements OnInit {
       {
         type: 'number',
         icon: 'cash-outline',
-        title: 'Costo Del Vehiculo',
+        title: 'Precio',
         formControlName: 'costo',
         validators: [Validators.required],
         validationMessages: [
@@ -99,7 +99,7 @@ export class VehiculoNewPage implements OnInit {
       {
         type: 'number',
         icon: 'people-circle-outline',
-        title: 'Cantidad del personal en el vehiculo',
+        title: 'Personal',
         formControlName: 'personal',
         validators: [Validators.required],
         validationMessages: [
@@ -112,7 +112,7 @@ export class VehiculoNewPage implements OnInit {
       {
         type: 'text',
         icon: 'image-outline',
-        title: 'ImagenURL',
+        title: 'Imagen',
         formControlName: 'imagen',
       },
     ];

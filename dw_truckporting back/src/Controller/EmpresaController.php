@@ -61,8 +61,7 @@ class EmpresaController extends AbstractController
         ]);
     }
     /**
-     * @Route ("/{id}", name="eventoDelete")
-     * @Method ({"DELETE"})
+     * @Route ("/{id}", name="eventoDelete",  methods={"DELETE"})
      */
     public function empresaDelete($id):Response{
 
@@ -79,8 +78,7 @@ class EmpresaController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}",name = "eventoUpdate")
-     * @Method  ({"PUT"})
+     * @Route ("/{id}",name = "eventoUpdate", methods={"PUT"} )
      */
     public function empresaUpdate($id,Request $request):Response{
         $doctrine = $this->getDoctrine()->getManager();
@@ -136,6 +134,7 @@ class EmpresaController extends AbstractController
      */
     public function empresaMaxId(){
         $empresas = $this->getDoctrine()->getRepository(Empresa::class)->findAll();
+
         $empresaIdMax = array_search(max($empresas),$empresas);
         return $this->json([
             $empresaIdMax
