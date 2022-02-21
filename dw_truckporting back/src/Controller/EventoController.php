@@ -52,11 +52,11 @@ class EventoController extends AbstractController
 
       $evento = new Evento();
 
-      $evento->setNombre($data->get("nombre"));
-      $evento->setLugar((string)($request->get("lugar")));
-      $evento->setFechaInicio(new DateTime((string)$request->get("fechaInicio")) );
-      $evento->setFechaFinal(new DateTime((string)$request->get("fechaFinal")));
-      $evento->setImagen((string)($request->get("imagen")));
+      $evento->setNombre($request->get(0)["nombre"]);
+      $evento->setLugar($request->request->get("lugar"));
+      $evento->setFechaInicio(new DateTime($request->request->get("fechaInicio")));
+      $evento->setFechaFinal(new DateTime($request->request->get("fechaFinal")));
+      $evento->setImagen($request->request->get("imagen"));
 
       $dotrine->persist($evento);
       $dotrine->flush();

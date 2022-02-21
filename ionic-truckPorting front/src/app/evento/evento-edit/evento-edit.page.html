@@ -1,16 +1,15 @@
 <ion-content fullscreen>
   <br />
   <br />
-  <div *ngIf="!isLoding">
-    <ion-title class="ion-text-capitalize">EDITAR {{evento.nombre}}</ion-title>
-    <br />
-    <ion-custom-form-builder
-      [formFields]="editForm"
-      [submitButtonText]="'Editar'"
-      (formSubmission)="saveEvento()"
-    >
-    </ion-custom-form-builder>
-  </div>
+
+  <ion-title class="ion-text-capitalize">EDITAR {{evento.nombre}}</ion-title>
+  <br />
+  <ion-custom-form-builder
+    [formFields]="editForm"
+    [submitButtonText]="'Editar'"
+    (formSubmission)="saveEvento()"
+  >
+  </ion-custom-form-builder>
 
   <br />
   <br />
