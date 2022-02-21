@@ -18,10 +18,12 @@ export class EmpresaItemComponent implements OnInit {
     id: 0,
     nombre: '',
     tipo: '',
-    contraseña: '',
     telefono: '',
     cif: '',
     imagen: '',
     contratos: [],
+    email: '',
+    roles: [],
+    password: undefined,
   };
 }

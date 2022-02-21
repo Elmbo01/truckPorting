@@ -20,11 +20,13 @@ export class EmpresaNewPage implements OnInit {
     id: 0,
     nombre: '',
     tipo: '',
-    contraseña: '',
     telefono: '',
     cif: '',
     imagen: '',
     contratos: [],
+    email: '',
+    roles: [],
+    password: undefined,
   };
   constructor(
     private activatedroute: ActivatedRoute,
@@ -117,7 +119,7 @@ export class EmpresaNewPage implements OnInit {
     this.empresa.id = this.empresaId;
     this.empresa.nombre = this.newForm.values()[0];
     this.empresa.tipo = this.newForm.values()[1];
-    this.empresa.contraseña = this.newForm.values()[2];
+    this.empresa.password = this.newForm.values()[2];
     this.empresa.telefono = this.newForm.values()[3];
     this.empresa.imagen = this.newForm.values()[4];
 

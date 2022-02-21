@@ -27,11 +27,13 @@ export class EmpresaEditPage implements OnInit {
     id: 0,
     nombre: '',
     tipo: '',
-    contraseña: '',
     telefono: '',
     cif: '',
     imagen: '',
     contratos: [],
+    email: '',
+    roles: [],
+    password: undefined,
   };
 
   editForm: FormField[] = [];
@@ -83,7 +85,7 @@ export class EmpresaEditPage implements OnInit {
             message: 'Contraseña es necesario',
           },
         ],
-        value: this.empresa.contraseña,
+        value: this.empresa.password,
       },
       {
         type: 'number',
@@ -134,7 +136,7 @@ export class EmpresaEditPage implements OnInit {
     this.empresa = data;
     this.editForm.values()[0] = this.empresa.nombre;
     this.editForm.values()[1] = this.empresa.tipo;
-    this.editForm.values()[2] = this.empresa.contraseña;
+    this.editForm.values()[2] = this.empresa.password;
     this.editForm.values()[3] = this.empresa.telefono;
     this.editForm.values()[4] = this.empresa.imagen;
   }
@@ -155,7 +157,7 @@ export class EmpresaEditPage implements OnInit {
     this.empresa.id = this.empresaId;
     this.empresa.nombre = this.editForm.values()[0];
     this.empresa.tipo = this.editForm.values()[1];
-    this.empresa.contraseña = this.editForm.values()[2];
+    this.empresa.password = this.editForm.values()[2];
     this.empresa.telefono = this.editForm.values()[3];
     this.empresa.imagen = this.editForm.values()[4];
 
