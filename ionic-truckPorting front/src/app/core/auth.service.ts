@@ -11,6 +11,7 @@ import { Empresa } from '../shared/empresa';
 export class AuthService {
   private authUrl = 'https://localhost:8000';
   constructor(private http: HttpClient) {}
+
   login(username: string, password: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -88,11 +89,9 @@ export class AuthService {
   }
 
   getRole() {
-    return localStorage.getItem('r') === 'ROLE_STUDENT'
-      ? 's'
-      : localStorage.getItem('r') === 'ROLE_EMPLOYER'
+    return localStorage.getItem('r') === 'ROLE_EMPRESA'
       ? 'e'
-      : localStorage.getItem('r') === 'ROLE_ARTEAN'
+      : localStorage.getItem('r') === 'ROLE_ADMIN'
       ? 'a'
       : '';
   }

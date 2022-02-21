@@ -15,7 +15,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(private menu: MenuController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.isLoggedIn()) {
+      this.authService.logout();
+      this.username = '';
+      this.router.navigate(['/']);
+    } else {
+      this.username = localStorage.getItem('u');
+    }
+  }
 
   openMenu() {
     this.menu.enable(true, 'menu');
@@ -37,7 +45,7 @@ export class NavbarComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
   isAdmin() {
-    return this.authService.getRole() === 's';
+    return this.authService.getRole() === 'a';
   }
   isEmpresa() {
     return this.authService.getRole() === 'e';
