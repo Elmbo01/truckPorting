@@ -102,11 +102,15 @@ class EventoController extends AbstractController
         }
 
 
-        $evento->setNombre($request->get("nombre"));
-        $evento->setLugar($request->get("lugar"));
-        $evento->setFechaInicio($request->get("fechaInicio"));
-        $evento->setFechaFinal($request->get("fechaFinal"));
-        $evento->setImagen($request->get("imagen"));
+        $data = (json_decode($request->getContent()));
+
+
+
+        $evento->setNombre($data->nombre);
+        $evento->setLugar($data->lugar);
+        $evento->setFechaInicio(new DateTime($data->fechaInicio));
+        $evento->setFechaFinal(new DateTime($data->fechaFinal));
+        $evento->setImagen($data->imagen);
 
         $doctrine->persist($evento);
         $doctrine->flush();

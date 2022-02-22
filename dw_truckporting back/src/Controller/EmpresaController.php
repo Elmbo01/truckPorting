@@ -46,12 +46,14 @@ class EmpresaController extends AbstractController
         $doctrine = $this->getDoctrine()->getManager();
         $empresa = new Empresa();
 
-        $empresa->setNombre($request->get("nombre"));
-        $empresa->setTipo($request->get("tipo"));
-        $empresa->setPassword($request->get("contrasena"));
-        $empresa->setTelefono($request->get("telefono"));
-        $empresa->setCif($request->get("cif"));
-        $empresa->setImagen($request->get("imagen"));
+        $data = (json_decode($request->getContent()));
+
+        $empresa->setNombre($data->nombre);
+        $empresa->setTipo($data->tipo);
+        $empresa->setPassword($data->contrasena);
+        $empresa->setTelefono($data->telefono);
+        $empresa->setCif($data->cif);
+        $empresa->setImagen($data->imagen);
 
         $doctrine->persist($empresa);
         $doctrine->flush();
@@ -92,13 +94,14 @@ class EmpresaController extends AbstractController
             ]);
         }
 
+        $data = (json_decode($request->getContent()));
 
-        $empresa->setNombre($request->get("nombre"));
-        $empresa->setTipo($request->get("tipo"));
-        $empresa->setPassword($request->get("contrasena"));
-        $empresa->setTelefono($request->get("telefono"));
-        $empresa->setCif($request->get("cif"));
-        $empresa->setImagen($request->get("imagen"));
+        $empresa->setNombre($data->nombre);
+        $empresa->setTipo($data->tipo);
+        $empresa->setPassword($data->contrasena);
+        $empresa->setTelefono($data->telefono);
+        $empresa->setCif($data->cif);
+        $empresa->setImagen($data->imagen);
 
         $doctrine->persist($empresa);
         $doctrine->flush();

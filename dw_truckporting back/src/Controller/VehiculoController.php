@@ -33,13 +33,16 @@ class VehiculoController extends AbstractController
 
       $vehiculo = new Vehiculo();
 
-      $vehiculo->setMatricula($request->get("matricula"));
-      $vehiculo->setDisponibilidad($request->get("disponibilidad"));
-      $vehiculo->setTipo($request->get("tipo"));
-      $vehiculo->setCapacidad($request->get("capacidad"));
-      $vehiculo->setCosto($request->get("costo"));
-      $vehiculo->setPersonal($request->get("personal"));
-      $vehiculo->setImagen($request->get("imagen"));
+      $data = (json_decode($request->getContent()));
+
+
+      $vehiculo->setMatricula($data->matricula);
+      $vehiculo->setDisponibilidad($data->disponibilidad);
+      $vehiculo->setTipo($data->tipo);
+      $vehiculo->setCapacidad($data->capacidad);
+      $vehiculo->setCosto($data->costo);
+      $vehiculo->setPersonal($data->personal);
+      $vehiculo->setImagen($data->imagen);
 
       $dotrine->persist($vehiculo);
       $dotrine->flush();
@@ -81,13 +84,16 @@ class VehiculoController extends AbstractController
             ]);
         }
 
-        $vehiculo->setMatricula($request->get("matricula"));
-        $vehiculo->setDisponibilidad($request->get("disponibilidad"));
-        $vehiculo->setTipo($request->get("tipo"));
-        $vehiculo->setCapacidad($request->get("capacidad"));
-        $vehiculo->setCosto($request->get("costo"));
-        $vehiculo->setPersonal($request->get("personal"));
-        $vehiculo->setImagen($request->get("imagen"));
+        $data = (json_decode($request->getContent()));
+
+
+        $vehiculo->setMatricula($data->matricula);
+        $vehiculo->setDisponibilidad($data->disponibilidad);
+        $vehiculo->setTipo($data->tipo);
+        $vehiculo->setCapacidad($data->capacidad);
+        $vehiculo->setCosto($data->costo);
+        $vehiculo->setPersonal($data->personal);
+        $vehiculo->setImagen($data->imagen);
 
         $doctrine->persist($vehiculo);
         $doctrine->flush();
@@ -102,9 +108,8 @@ class VehiculoController extends AbstractController
      */
     public function vehiculoGetById($id){
         $vehiculo = $this->getDoctrine()->getRepository(Vehiculo::class)->find($id);
-        $vehiculos = [];
 
-        $data =['id'=>$vehiculoId(),
+        $data =['id'=>$id,
             'matricula'=>$vehiculo->getMatricula(),
             'disponibilidad'=>$vehiculo->getDisponibilidad(),
             'tipo'=>$vehiculo->getTipo(),
