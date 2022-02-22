@@ -6,9 +6,10 @@ import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent {
+export class LoginPage implements OnInit {
   form: FormGroup;
 
   constructor(
@@ -21,6 +22,7 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
+  ngOnInit() {}
 
   login() {
     const val = this.form.value;

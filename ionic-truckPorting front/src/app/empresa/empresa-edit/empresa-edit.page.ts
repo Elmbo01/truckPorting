@@ -38,10 +38,8 @@ export class EmpresaEditPage implements OnInit {
 
   editForm: FormField[] = [];
   empresaId: number = 0;
-  isLoading: Boolean = true;
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.empresaId = parseInt(this.activatedroute.snapshot.params['id']);
 
     this.editForm = [

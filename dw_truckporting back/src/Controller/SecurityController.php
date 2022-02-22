@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Admin;
 use App\Entity\UserMgr\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,5 +62,23 @@ class SecurityController extends AbstractController
         return $this->json([
             "state" => $state
         ]);
+    }
+
+    /**
+     * @Route ("/admin/generate", name="admin generate")
+     */
+    public function adminGenerate(){
+        $admin = new Admin();
+        $admin->setEmail("admin");
+        $admin->setPassword("admin");
+        if (count($this->getDoctrine()->getRepository(Admin::class)->findAll()) == 0){
+            $this->getDoctrine()->getManager()->persist($admin);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        return $this->json(
+            [
+                "mensaje" => "admin generate"
+            ]
+        );
     }
 }

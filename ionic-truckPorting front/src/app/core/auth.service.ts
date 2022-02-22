@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Empresa } from '../shared/empresa';
+import { User } from '../shared/user';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<Empresa>(
+      .post<User>(
         this.authUrl + '/login_check',
         { username, password },
         { headers }
@@ -31,7 +31,7 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<Empresa>(
+      .post<User>(
         this.authUrl + '/register',
         { username, password, type },
         { headers }

@@ -48,15 +48,16 @@ class EventoController extends AbstractController
     public function eventoNew(Request $request): Response{
       $dotrine =  $this->getDoctrine()->getManager();
 
-      $data = json_decode($request->getContent());
+      $data = (json_decode($request->getContent()));
 
       $evento = new Evento();
 
-      $evento->setNombre($request->get(0)["nombre"]);
-      $evento->setLugar($request->request->get("lugar"));
-      $evento->setFechaInicio(new DateTime($request->request->get("fechaInicio")));
-      $evento->setFechaFinal(new DateTime($request->request->get("fechaFinal")));
-      $evento->setImagen($request->request->get("imagen"));
+
+      $evento->setNombre($data->nombre);
+      $evento->setLugar($data->lugar);
+      $evento->setFechaInicio(new DateTime($data->fechaInicio));
+      $evento->setFechaFinal(new DateTime($data->fechaFinal));
+      $evento->setImagen($data->imagen);
 
       $dotrine->persist($evento);
       $dotrine->flush();
