@@ -9,7 +9,9 @@ import { tap, catchError, map } from 'rxjs/operators';
 })
 export class EventoService {
   private eventoUrl = 'https://young-mesa-86602.herokuapp.com/evento';
-//  private eventoUrl = 'https://young-mesa-86602.herokuapp.com/evento';
+  //export class EventoService {
+  //private eventoUrl = 'https://young-mesa-86602.herokuapp.com/evento';
+  //  private eventoUrl = 'https://young-mesa-86602.herokuapp.com/evento';
   constructor(private http: HttpClient) {}
 
   getEvento(): Observable<Evento[]> {
@@ -20,15 +22,10 @@ export class EventoService {
   }
 
   getMaxEventoId(): Observable<number> {
-    return this.http.get<Evento[]>(this.eventoUrl).pipe(
-      map((data) =>
-        Math.max.apply(
-          Math,
-          data.map(function (o) {
-            return o.id;
-          })
-        )
-      ),
+    return this.http.get<number>(`${this.eventoUrl}/maxId`).pipe(
+      tap((date) => {
+        console.log('MaxId:' + JSON.stringify(date));
+      }),
       catchError(this.handError)
     );
   }

@@ -9,6 +9,9 @@ import { tap, catchError, map } from 'rxjs/operators';
 })
 export class EmpresaService {
   private empresaUrl = 'https://young-mesa-86602.herokuapp.com/empresa';
+
+  //export class EmpresaService {
+  //private empresaUrl = 'https://young-mesa-86602.herokuapp.com/empresa';
   // private empresaUrl = 'https://young-mesa-86602.herokuapp.com/empresa';
 
   constructor(private http: HttpClient) {}

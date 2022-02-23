@@ -9,7 +9,9 @@ import { tap, catchError, map } from 'rxjs/operators';
 })
 export class VehiculoService {
   private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
-// private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
+  //export class VehiculoService {
+  //private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
+  // private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
   constructor(private http: HttpClient) {}
 
   getVehiculo(): Observable<Vehiculo[]> {
@@ -20,19 +22,13 @@ export class VehiculoService {
   }
 
   getMaxVehiculoId(): Observable<number> {
-    return this.http.get<Vehiculo[]>(this.vehiculoUrl).pipe(
-      map((data) =>
-        Math.max.apply(
-          Math,
-          data.map(function (o) {
-            return o.id;
-          })
-        )
-      ),
+    return this.http.get<number>(`${this.vehiculoUrl}/maxId`).pipe(
+      tap((date) => {
+        console.log('MaxId:' + JSON.stringify(date));
+      }),
       catchError(this.handError)
     );
   }
-
   getVehiculoById(id: number): Observable<Vehiculo> {
     const url = `${this.vehiculoUrl}/${id}`;
     return this.http.get<Vehiculo>(url).pipe(

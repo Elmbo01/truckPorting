@@ -14,7 +14,9 @@ import { Contrato } from '../shared/contrato';
 })
 export class ContratoService {
   private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
-// private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
+  //export class ContratoService {
+  //private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
+  // private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
   constructor(private http: HttpClient) {}
 
   getContrato(): Observable<Contrato[]> {
@@ -48,16 +50,11 @@ export class ContratoService {
       );
   }
 
-  getMaxEventoId(): Observable<number> {
-    return this.http.get<Contrato[]>(this.contratoUrl).pipe(
-      map((data) =>
-        Math.max.apply(
-          Math,
-          data.map(function (o) {
-            return o.id;
-          })
-        )
-      ),
+  getMaxContratoId(): Observable<number> {
+    return this.http.get<number>(`${this.contratoUrl}/maxId`).pipe(
+      tap((date) => {
+        console.log('MaxId:' + JSON.stringify(date));
+      }),
       catchError(this.handError)
     );
   }
