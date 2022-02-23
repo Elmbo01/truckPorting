@@ -1,0 +1,15 @@
+<ion-content fullscreen>
+  <br />
+  <ion-title>NUEVA EMPRESA</ion-title>
+  <br />
+  <ion-custom-form-builder
+    [formFields]="newForm"
+    [submitButtonText]="'Crear Empresa'"
+    (formSubmission)="saveEmpresa($event)"
+  >
+  </ion-custom-form-builder>
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

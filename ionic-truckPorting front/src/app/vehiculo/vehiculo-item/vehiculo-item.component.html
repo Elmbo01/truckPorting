@@ -1,0 +1,25 @@
+<br />
+<ion-item>
+  <ion-card>
+    <img src="{{ empresa.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ vehiculo.tipo }}</ion-card-subtitle>
+      <ion-card-title>
+        <a [routerLink]="['/vehiculos', vehiculo.id]">{{
+          vehiculo.matricula
+        }}</a>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Capacidad: {{ vehiculo.capacidad }}L </ion-card-content>
+    <ion-card-content>
+      Personal: {{ vehiculo.personal }} Personas
+    </ion-card-content>
+    <ion-card-content> Coste: {{ vehiculo.costo }}€</ion-card-content>
+    <ion-card-content>
+      <p class="">
+        Disponiblidad: <span *ngIf="vehiculo.disponibilidad; else no"></span
+        ><ng-template #no>No</ng-template> Disponible
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-item>

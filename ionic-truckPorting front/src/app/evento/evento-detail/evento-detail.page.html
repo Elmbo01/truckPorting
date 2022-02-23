@@ -1,0 +1,31 @@
+<ion-content>
+  <br />
+  <br />
+  <ion-card>
+    <img src="{{ evento.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ evento.lugar }}</ion-card-subtitle>
+      <ion-card-title>
+        <h1>{{ evento.nombre }}</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Fecha Inicio: {{ evento.fechaInicio | date: "dd/MM/yyyy" }}
+    </ion-card-content>
+    <ion-card-content>
+      Fecha Final: {{ evento.fechaFinal | date: "dd/MM/yyyy"}}
+    </ion-card-content>
+    <ion-card-content> Empresas Participantes: </ion-card-content>
+    <ion-list>
+      <div *ngFor="let empresa of evento.empresa">
+        <ion-item> <ion-label>{{empresa.nombre}}</ion-label> </ion-item>
+      </div>
+    </ion-list>
+    <ion-button color="secondary" href="evento/edit/{{evento.id}}">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" (click)="deleteEvento()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-card>
+</ion-content>

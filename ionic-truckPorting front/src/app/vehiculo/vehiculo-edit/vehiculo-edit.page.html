@@ -1,0 +1,18 @@
+<ion-content fullscreen>
+  <br />
+  <br />
+
+  <ion-title class="ion-text-capitalize">{{PageTitle}}</ion-title>
+  <br />
+  <ion-custom-form-builder
+    [formFields]="editForm"
+    [submitButtonText]="'Editar'"
+    (formSubmission)="saveVehiculo($event)"
+  >
+  </ion-custom-form-builder>
+
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

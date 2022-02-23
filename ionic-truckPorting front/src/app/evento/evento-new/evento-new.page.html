@@ -1,0 +1,19 @@
+<ion-content fullscreen>
+  <br />
+  <br />
+  <div *ngIf="!isLoding">
+    <ion-title class="ion-text-capitalize">Crear nuevo evento</ion-title>
+    <br />
+    <ion-custom-form-builder
+      [formFields]="newForm"
+      [submitButtonText]="'Crear'"
+      (formSubmission)="newEvento($event)"
+    >
+    </ion-custom-form-builder>
+  </div>
+
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

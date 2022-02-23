@@ -1,0 +1,21 @@
+<ion-content fullscreen class="ion-padding">
+  <ion-list>
+    <div *ngFor="let empresa of empresas">
+      <app-empresa-item [empresa]="empresa"></app-empresa-item>
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button href="/empresa/{{idMaxEmpresa}}/new">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

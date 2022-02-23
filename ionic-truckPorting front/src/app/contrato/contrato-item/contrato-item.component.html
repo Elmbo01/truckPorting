@@ -1,0 +1,8 @@
+<ion-item>
+  <ion-label>
+    <a [routerLink]="['/contrato', contrato.id]">
+      <h2>{{ contrato.evento.nombre }}</h2>
+    </a>
+    <p>{{ contrato.fecha | date: "dd/MM/yyyy" }}</p>
+  </ion-label>
+</ion-item>

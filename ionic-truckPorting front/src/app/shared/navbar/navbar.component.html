@@ -1,0 +1,76 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['']">
+    <img src="../../../assets/icon/logo.png" class="img-fluid" />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"> </span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <h3><a class="nav-link" [routerLink]="['']">TruckPorting</a></h3>
+      </li>
+      <li class="nav-item my-auto">
+        <a class="nav-link" (click)="newEvento()">Nuevo Evento</a>
+      </li>
+      <li class="nav-item my-auto">
+        <a class="nav-link" (click)="newEmpresa()">Nueva Empresa</a>
+      </li>
+      <li class="nav-item my-auto">
+        <a class="nav-link" (click)="newVehiculo()">Nuevo Vehículo</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->
+
+<ion-menu side="start" menuId="menu" contentId="menu" translucent>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>TruckPorting</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item href="/empresas">Empresas</ion-item>
+      <ion-item href="/evento">Eventos</ion-item>
+      <ion-item href="/vehiculos">Vehiculos</ion-item>
+    </ion-list>
+  </ion-content>
+
+  <div class="my-auto text-muted">
+    {{ username }}
+  </div>
+  <div class="mx-auto">
+    <div *ngIf="!isLoggedIn()">
+      <a class="btn btn-sm btn-outline-secondary mx-2" (click)="register()"
+        >Registrarse</a
+      >
+      <a class="btn btn-sm btn-outline-primary mx-2" (click)="login()"
+        >Acceder</a
+      >
+    </div>
+    <div *ngIf="isLoggedIn()">
+      <a class="btn btn-outline-info mx-2" (click)="logout()">Salir</a>
+    </div>
+  </div>
+</ion-menu>
+<div class="ion-page" id="menu" main></div>
+
+<ion-toolbar>
+  <ion-buttons slot="start" (click)="openMenu()">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="primary" (click)="openMenu()"> </ion-buttons>
+
+  <a href="/"><ion-title>TruckPorting</ion-title></a>
+</ion-toolbar>

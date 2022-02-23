@@ -1,0 +1,27 @@
+<ion-content>
+  <br />
+  <br />
+  <ion-card>
+    <img src="{{ empresa.imagen }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ empresa.tipo }}</ion-card-subtitle>
+      <ion-card-title>
+        <h1>{{ empresa.nombre }}</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Teléfono: {{ empresa.telefono }} </ion-card-content>
+    <ion-card-content> CIF: {{ empresa.cif }} </ion-card-content>
+    <ion-card-content> Contratos: </ion-card-content>
+    <ion-list>
+      <div *ngFor="let contrato of empresa.contratos">
+        <app-contrato-item [contrato]="contrato"></app-contrato-item>
+      </div>
+    </ion-list>
+    <ion-button color="secondary" href="empresa/edit/{{empresa.id}}">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" (click)="deleteEmpresa()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-card>
+</ion-content>
