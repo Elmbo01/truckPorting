@@ -14,7 +14,7 @@ import { Contrato } from '../shared/contrato';
 })
 export class ContratoService {
   private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
-
+// private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
   constructor(private http: HttpClient) {}
 
   getContrato(): Observable<Contrato[]> {

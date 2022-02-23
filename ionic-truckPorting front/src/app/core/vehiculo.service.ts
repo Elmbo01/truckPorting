@@ -9,7 +9,7 @@ import { tap, catchError, map } from 'rxjs/operators';
 })
 export class VehiculoService {
   private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
-
+// private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
   constructor(private http: HttpClient) {}
 
   getVehiculo(): Observable<Vehiculo[]> {

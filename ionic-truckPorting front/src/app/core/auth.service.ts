@@ -10,7 +10,11 @@ import { User } from '../shared/user';
 })
 export class AuthService {
   private authUrl = 'https://localhost:8000';
-  constructor(private http: HttpClient) {}
+ 
+  // private authUrl = 'https://localhost:8000';
+  
+ constructor(private http: HttpClient) {}
+ 
   /** 
   login(username: string, password: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
