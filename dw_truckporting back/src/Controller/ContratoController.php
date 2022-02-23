@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContratoController extends AbstractController
 {
     /**
-     * @Route("/new", name="new contrato", method={"POST"})
+     * @Route("/new", name="new contrato", methods={"POST"})
      */
     public function index(Request $request): Response
     {
@@ -40,7 +40,7 @@ class ContratoController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}", method={"GET"})
+     * @Route ("/{id}", methods={"GET"})
      */
     public function contratoGetById($id){
         $doctrine = $this->getDoctrine()->getManager();
