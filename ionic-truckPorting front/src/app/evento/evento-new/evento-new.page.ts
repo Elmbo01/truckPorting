@@ -87,13 +87,13 @@ export class EventoNewPage implements OnInit {
       },
     ];
   }
-  newEvento(): void {
+  newEvento(event): void {
     this.evento.id = this.eventoId;
-    this.evento.nombre = this.newForm[0].value;
-    this.evento.lugar = this.newForm[1].value;
-    this.evento.fechaInicio = this.newForm[2].value;
-    this.evento.fechaFinal = this.newForm[3].value;
-    this.evento.imagen = this.newForm[4].value;
+    this.evento.nombre = event['nombre'];
+    this.evento.lugar = event['lugar'];
+    this.evento.fechaInicio = event['fechaInicio'];
+    this.evento.fechaFinal = event['fechaFinal'];
+    this.evento.imagen = event['imagen'];
 
     this.EventoService.createEvento(this.evento).subscribe(
       () => this.onSaveComplete(),
@@ -101,6 +101,6 @@ export class EventoNewPage implements OnInit {
     );
   }
   onSaveComplete(): void {
-    this.router.navigate(['/eventos']);
+    this.router.navigate(['/evento']);
   }
 }

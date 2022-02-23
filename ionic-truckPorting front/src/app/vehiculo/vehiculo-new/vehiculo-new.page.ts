@@ -118,14 +118,14 @@ export class VehiculoNewPage implements OnInit {
     ];
   }
 
-  createVehiculo(): void {
-    this.vehiculo.matricula = this.newForm.values()[0];
-    this.vehiculo.disponibilidad = this.newForm.values()[1];
-    this.vehiculo.tipo = this.newForm.values()[2];
-    this.vehiculo.capacidad = this.newForm.values()[3];
-    this.vehiculo.costo = this.newForm.values()[4];
-    this.vehiculo.personal = this.newForm.values()[5];
-    this.vehiculo.imagen = this.newForm.values()[6];
+  createVehiculo(event): void {
+    this.vehiculo.matricula = event['matricula'];
+    this.vehiculo.disponibilidad = event['disponibilidad'];
+    this.vehiculo.tipo = event['tipo'];
+    this.vehiculo.capacidad = event['capacidad'];
+    this.vehiculo.costo = event['costo'];
+    this.vehiculo.personal = event['personal'];
+    this.vehiculo.imagen = event['imagen'];
 
     this.vehiculoService.createVehiculo(this.vehiculo).subscribe(
       () => this.onSaveComplete(),

@@ -11,7 +11,7 @@ const routes: Routes = [
     component: EventoNewPage,
   },
   { path: 'evento/:empresaId', component: EventoDetailPage },
-  { path: 'evento/:id/edit', component: EventoEditPage },
+  { path: 'evento/edit/:id', component: EventoEditPage },
   {
     path: 'evento',
     component: EventoAllPage,

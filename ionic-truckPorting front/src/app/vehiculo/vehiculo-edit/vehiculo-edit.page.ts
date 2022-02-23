@@ -156,14 +156,14 @@ export class VehiculoEditPage implements OnInit {
     }
   }
 
-  saveVehiculo(): void {
-    this.vehiculo.matricula = this.editForm.values()[0];
-    this.vehiculo.disponibilidad = this.editForm.values()[1];
-    this.vehiculo.tipo = this.editForm.values()[2];
-    this.vehiculo.capacidad = this.editForm.values()[3];
-    this.vehiculo.costo = this.editForm.values()[4];
-    this.vehiculo.personal = this.editForm.values()[5];
-    this.vehiculo.imagen = this.editForm.values()[6];
+  saveVehiculo(event): void {
+    this.vehiculo.matricula = event['matricula'];
+    this.vehiculo.disponibilidad = event['disponibilidad'];
+    this.vehiculo.tipo = event['tipo'];
+    this.vehiculo.capacidad = event['capacidad'];
+    this.vehiculo.costo = event['costo'];
+    this.vehiculo.personal = event['personal'];
+    this.vehiculo.imagen = event['imagen'];
 
     this.vehiculoService.createVehiculo(this.vehiculo).subscribe(
       () => this.onSaveComplete(),

@@ -49,7 +49,7 @@ export class EventoService {
       'Access-Control-Allow-Origin': '*',
     });
     return this.http
-      .post<Evento>(this.eventoUrl, evento, { headers: headers })
+      .post<Evento>(this.eventoUrl + '/new', evento, { headers: headers })
       .pipe(
         tap((data) => console.log('createEvento: ' + JSON.stringify(data))),
         catchError(this.handError)

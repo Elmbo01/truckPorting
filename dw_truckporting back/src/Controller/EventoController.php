@@ -105,8 +105,7 @@ class EventoController extends AbstractController
         $data = (json_decode($request->getContent()));
 
 
-
-        $evento->setNombre($data->nombre);
+        $evento->setNombre($data->nombres);
         $evento->setLugar($data->lugar);
         $evento->setFechaInicio(new DateTime($data->fechaInicio));
         $evento->setFechaFinal(new DateTime($data->fechaFinal));

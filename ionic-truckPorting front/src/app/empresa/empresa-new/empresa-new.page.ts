@@ -70,7 +70,7 @@ export class EmpresaNewPage implements OnInit {
         type: 'password',
         icon: 'eye-off-outline',
         title: 'Contraseña',
-        formControlName: 'contraseña',
+        formControlName: 'contrasena',
         validators: [Validators.required],
         validationMessages: [
           {
@@ -110,18 +110,17 @@ export class EmpresaNewPage implements OnInit {
         icon: 'image-outline',
         title: 'Imagen Corporativa',
         formControlName: 'imagen',
-        value: this.empresa.imagen,
       },
     ];
   }
 
-  saveEmpresa(): void {
+  saveEmpresa(event): void {
     this.empresa.id = this.empresaId;
-    this.empresa.nombre = this.newForm.values()[0];
-    this.empresa.tipo = this.newForm.values()[1];
-    this.empresa.password = this.newForm.values()[2];
-    this.empresa.telefono = this.newForm.values()[3];
-    this.empresa.imagen = this.newForm.values()[4];
+    this.empresa.nombre = event['nombre'];
+    this.empresa.tipo = event['tipo'];
+    this.empresa.password = event['contrasena'];
+    this.empresa.telefono = event['telefono'];
+    this.empresa.imagen = event['imagen'];
 
     this.empresaService.createEmpresa(this.empresa).subscribe(
       () => this.onSaveComplete(),
@@ -130,6 +129,6 @@ export class EmpresaNewPage implements OnInit {
   }
   onSaveComplete(): void {
     this.empresaForm;
-    this.router.navigate(['/vehiculos']);
+    this.router.navigate(['/empresas']);
   }
 }

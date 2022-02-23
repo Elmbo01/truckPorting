@@ -107,13 +107,13 @@ export class EventoEditPage implements OnInit {
     this.editForm.values()[4] = this.evento.imagen;
   }
 
-  saveEvento() {
+  saveEvento(event) {
     this.evento.id = this.eventoId;
-    this.evento.nombre = this.editForm[0].value;
-    this.evento.lugar = this.editForm[1].value;
-    this.evento.fechaInicio = this.editForm[2].value;
-    this.evento.fechaFinal = this.editForm[3].value;
-    this.evento.imagen = this.editForm[4].value;
+    this.evento.nombre = event['nombre'];
+    this.evento.lugar = event['lugar'];
+    this.evento.fechaInicio = event['fechaInicio'];
+    this.evento.fechaFinal = event['fechaFinal'];
+    this.evento.imagen = event['imagen'];
 
     this.eventoService.updateEvento(this.evento).subscribe(
       () => this.onSaveComplete(),
