@@ -13,6 +13,7 @@ use App\Entity\User;
  */
 class Empresa extends User
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -52,6 +53,7 @@ class Empresa extends User
 
     public function __construct()
     {
+        parent::new ();
         $this->contratos = new ArrayCollection();
     }
 

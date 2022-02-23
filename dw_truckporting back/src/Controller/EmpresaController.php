@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Empresa;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,12 +46,12 @@ class EmpresaController extends AbstractController
 
         $doctrine = $this->getDoctrine()->getManager();
         $empresa = new Empresa();
-
         $data = (json_decode($request->getContent()));
+
 
         $empresa->setNombre($data->nombre);
         $empresa->setTipo($data->tipo);
-        $empresa->setPassword($data->contrasena);
+        $empresa->setPassword($data->password);
         $empresa->setTelefono($data->telefono);
         $empresa->setCif($data->cif);
         $empresa->setImagen($data->imagen);

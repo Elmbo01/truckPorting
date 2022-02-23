@@ -9,6 +9,7 @@ import { EmpresaPageRoutingModule } from './empresa-routing.module';
 import { EmpresaAllPage } from './empresa-all/empresa-all.page';
 import { FormsModule } from '@angular/forms';
 import { IonCustomFormBuilderModule } from 'ion-custom-form-builder';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { IonCustomFormBuilderModule } from 'ion-custom-form-builder';
     SharedModule,
     EmpresaPageRoutingModule,
     FormsModule,
+    IonicModule,
     IonCustomFormBuilderModule.forRoot(),
   ],
   exports: [EmpresaItemComponent],

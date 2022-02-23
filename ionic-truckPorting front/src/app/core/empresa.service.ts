@@ -45,7 +45,7 @@ export class EmpresaService {
       'Access-Control-Allow-Origin': '*',
     });
     return this.http
-      .post<Empresa>(this.empresaUrl, empresa, { headers: headers })
+      .post<Empresa>(this.empresaUrl + '/new', empresa, { headers: headers })
       .pipe(
         tap((data) => console.log('createEmpresa: ' + JSON.stringify(data))),
         catchError(this.handError)

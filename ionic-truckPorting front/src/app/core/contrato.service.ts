@@ -41,7 +41,7 @@ export class ContratoService {
     });
 
     return this.http
-      .post<Contrato>(this.contratoUrl, contrato, { headers: headers })
+      .post<Contrato>(this.contratoUrl + '/new', contrato, { headers: headers })
       .pipe(
         tap((date) => console.log('createContrato ' + JSON.stringify(date))),
         catchError(this.handError)

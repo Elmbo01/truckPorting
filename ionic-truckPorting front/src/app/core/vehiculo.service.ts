@@ -47,7 +47,7 @@ export class VehiculoService {
       'Access-Control-Allow-Origin': '*',
     });
     return this.http
-      .post<Vehiculo>(this.vehiculoUrl, vehiculo, { headers: headers })
+      .post<Vehiculo>(this.vehiculoUrl + '/new', vehiculo, { headers: headers })
       .pipe(
         tap((data) => console.log('createVehiculo: ' + JSON.stringify(data))),
         catchError(this.handError)
