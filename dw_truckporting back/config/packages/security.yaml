@@ -7,13 +7,13 @@ security:
       algorithm: auto
 
   encoders:
-    App\Entity\UserMgr\User:
+    App\Entity\User:
       algorithm: auto
 
   providers:
     entity_provider:
       entity:
-        class: App\Entity\UserMgr\User
+        class: App\Entity\User
         property: email
   role_hierarchy:
     #ROLE_USER:

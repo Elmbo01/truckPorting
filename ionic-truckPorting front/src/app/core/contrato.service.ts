@@ -13,7 +13,7 @@ import { Contrato } from '../shared/contrato';
   providedIn: 'root',
 })
 export class ContratoService {
-  private contratoUrl = 'http://127.0.0.1:8000/contrato';
+  private contratoUrl = 'https://young-mesa-86602.herokuapp.com/contrato';
 
   constructor(private http: HttpClient) {}
 
@@ -35,7 +35,10 @@ export class ContratoService {
   }
 
   createContrato(contrato: Contrato): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
 
     return this.http
       .post<Contrato>(this.contratoUrl, contrato, { headers: headers })

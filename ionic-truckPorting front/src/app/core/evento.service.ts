@@ -8,7 +8,7 @@ import { tap, catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class EventoService {
-  private eventoUrl = 'http://127.0.0.1:8000/evento';
+  private eventoUrl = 'https://young-mesa-86602.herokuapp.com/evento';
 
   constructor(private http: HttpClient) {}
 
@@ -44,7 +44,10 @@ export class EventoService {
   }
 
   createEvento(evento: Evento): Observable<Evento> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     return this.http
       .post<Evento>(this.eventoUrl, evento, { headers: headers })
       .pipe(
@@ -54,7 +57,10 @@ export class EventoService {
   }
 
   deleteEvento(id: number): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.eventoUrl}/${id}`;
     return this.http.delete<Evento>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteEvento: ' + id)),
@@ -63,7 +69,10 @@ export class EventoService {
   }
 
   updateEvento(evento: Evento): Observable<Evento> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.eventoUrl}/${evento.id}`;
     return this.http.put<Evento>(url, evento, { headers: headers }).pipe(
       tap(() => console.log('updateTrip: ' + evento.id)),

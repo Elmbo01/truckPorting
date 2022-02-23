@@ -8,7 +8,7 @@ import { tap, catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class EmpresaService {
-  private empresaUrl = 'http://localhost:8000/empresa';
+  private empresaUrl = 'https://young-mesa-86602.herokuapp.com/empresa';
 
   constructor(private http: HttpClient) {}
 
@@ -40,7 +40,10 @@ export class EmpresaService {
   }
 
   createEmpresa(empresa: Empresa): Observable<Empresa> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     return this.http
       .post<Empresa>(this.empresaUrl, empresa, { headers: headers })
       .pipe(
@@ -50,7 +53,10 @@ export class EmpresaService {
   }
 
   deleteEmpresa(id: number): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.empresaUrl}/${id}`;
     return this.http.delete<Empresa>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteEmpresa: ' + id)),
@@ -59,7 +65,10 @@ export class EmpresaService {
   }
 
   updateEmpresa(empresa: Empresa): Observable<Empresa> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.empresaUrl}/${empresa.id}`;
     return this.http.put<Empresa>(url, empresa, { headers: headers }).pipe(
       tap(() => console.log('updateEmpresa: ' + empresa.id)),

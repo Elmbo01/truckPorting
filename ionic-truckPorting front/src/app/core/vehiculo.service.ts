@@ -8,7 +8,7 @@ import { tap, catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class VehiculoService {
-  private vehiculoUrl = 'http://127.0.0.1:8000/vehiculo';
+  private vehiculoUrl = 'https://young-mesa-86602.herokuapp.com/vehiculo';
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +42,10 @@ export class VehiculoService {
   }
 
   createVehiculo(vehiculo: Vehiculo): Observable<Vehiculo> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     return this.http
       .post<Vehiculo>(this.vehiculoUrl, vehiculo, { headers: headers })
       .pipe(
@@ -52,7 +55,10 @@ export class VehiculoService {
   }
 
   deleteVehiculo(id: number): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.vehiculoUrl}/${id}`;
     return this.http.delete<Vehiculo>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteVehiculo: ' + id)),
@@ -61,7 +67,10 @@ export class VehiculoService {
   }
 
   updateVehiculo(vehiculo: Vehiculo): Observable<Vehiculo> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
     const url = `${this.vehiculoUrl}/${vehiculo.id}`;
     return this.http.put<Vehiculo>(url, vehiculo, { headers: headers }).pipe(
       tap(() => console.log('updateVehiculo: ' + vehiculo.id)),

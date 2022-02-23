@@ -1,0 +1,81 @@
+<div class="row g-3">
+  <div class="col"></div>
+  <div class="col">
+    <form (ngSubmit)="register()" [formGroup]="form">
+      <br />
+      <br />
+      <br />
+      <fieldset class="form-group">
+        <legend class="mx-auto">Registrarse</legend>
+        <div class="continer">
+          <div class="row my-2">
+            <div class="col-2 d-flex justify-content-end">
+              <label class="form-text text-muted">Email:</label>
+            </div>
+            <div class="col-6">
+              <input
+                style="width: 130px"
+                name="username"
+                formControlName="username"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-2 d-flex justify-content-end">
+              <label class="form-text text-muted">Contraseña:</label>
+            </div>
+            <div class="col-6">
+              <input
+                style="width: 130px"
+                name="password"
+                formControlName="password"
+                type="password"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 d-flex flex-column justify-content-start">
+              <div class="row">
+                <div class="form-check col-4 mx-auto">
+                  <input
+                    class="form-check-input"
+                    formControlName="type"
+                    value="empresa"
+                    type="radio"
+                    name="type"
+                    id="flexRadioDefault1"
+                    checked
+                  />
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Empresa
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-check col-4 mx-auto">
+                  <input
+                    class="form-check-input"
+                    formControlName="type"
+                    value="particular"
+                    type="radio"
+                    name="type"
+                    id="flexRadioDefault2"
+                  />
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Particular
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button class="btn btn-primary" (click)="register()">Aceptar</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="col"></div>
+</div>

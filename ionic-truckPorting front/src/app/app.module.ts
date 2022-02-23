@@ -11,6 +11,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginPageModule } from './login/login.module';
+import { RegisterPageModule } from './register/register.module';
+import { RegisterPageRoutingModule } from './register/register-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,8 @@ import { LoginPageModule } from './login/login.module';
     HomePageModule,
     SharedModule,
     LoginPageModule,
+    RegisterPageModule,
+    RegisterPageRoutingModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
